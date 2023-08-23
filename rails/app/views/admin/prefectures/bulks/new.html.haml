@@ -1,6 +1,9 @@
 %h1
   都道府県作成
 = form_with(url: admin_prefectures_bulk_path) do |form|
-  .row
+  .row.my-3
     .col-md-3.col-form-label.fw-bold 都道府県CSV
     .col-md-9
+      = form.file_field :prefecture_csv, class: 'form-control'
+  .row.my-3
+    = form.submit '送信', class: 'btn btn-primary w-100'
