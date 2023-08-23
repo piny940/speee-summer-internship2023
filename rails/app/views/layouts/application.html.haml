@@ -1,0 +1,27 @@
+!!!
+%html{:lang => "ja"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title
+      = yield :title
+      - if yield(:title).strip.present?
+        \-
+      ベテランすまい
+    %meta{:content => "#{yield :meta_keywords}BackendSongList, railsテンプレート", :name => "keywords"}/
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = javascript_importmap_tags
+    = yield :js
+    = stylesheet_link_tag 'application'
+  %body
+    %nav.navbar.navbar-expand-md.navbar-light.bg-light
+      .container
+        = link_to 'ベテランすまい', root_path, class: 'navbar-brand'
+    .container.mt-3
+      - if notice
+        .alert.alert-info= notice
+      - if alert
+        .alert.alert-danger= alert
+      -# = render 'application/breadcrumbs'
+      = yield
