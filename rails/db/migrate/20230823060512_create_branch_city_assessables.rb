@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateBranchCityAssessables < ActiveRecord::Migration[7.0]
   def change
     create_table :branch_city_assessables do |t|
