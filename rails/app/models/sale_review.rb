@@ -10,7 +10,7 @@ class SaleReview < ApplicationRecord
   enum gender: {
     male: 0,
     female: 10,
-    other: 99,
+    other: -1,
   }, _prefix: true
 
   enum property_type: {
@@ -22,14 +22,14 @@ class SaleReview < ApplicationRecord
   enum previous_experience: {
     first: 0, # 初めて
     second: 10, # 2回目
-    more: 20, # 3回以上
+    more: -1, # 3回以上
   }, _prefix: true
 
   enum agency_type: {
     senzoku_sennin: 0, # 専属専任媒介契約
     sennin: 10, # 専任媒介契約
     ippan: 20, # 一般媒介契約
-    other: 99,
+    other: -1, # 分からない
   }, _prefix: true
 
   enum sale_reason: {
@@ -39,5 +39,6 @@ class SaleReview < ApplicationRecord
     divorce: 30, # 離婚
     assets_management: 40, # 資産整理
     financial: 50, # 金銭的な理由
+    other: -1, # その他
   }, _prefix: true
 end
