@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_23_060512) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_23_071352) do
   create_table "branch_city_assessables", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "city_id", null: false
     t.bigint "branch_id", null: false
@@ -60,9 +60,49 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_060512) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sale_reviews", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.integer "publishment"
+    t.bigint "branch_id", null: false
+    t.string "name", null: false
+    t.integer "gender", null: false
+    t.integer "age", null: false
+    t.bigint "city_id", null: false
+    t.string "address", null: false
+    t.integer "property_type", null: false
+    t.integer "previous_experience", null: false
+    t.datetime "begin_consideration_period", null: false
+    t.datetime "assessment_request_period", null: false
+    t.datetime "begin_sale_period", null: false
+    t.datetime "sale_period", null: false
+    t.datetime "transfer_period", null: false
+    t.integer "speed_satisfaction", null: false
+    t.integer "assessed_price", null: false
+    t.integer "begin_sale_price", null: false
+    t.integer "discount", null: false
+    t.integer "discounted_period_from_begin_sale", default: -1, null: false
+    t.integer "discount_amount", default: 0, null: false
+    t.integer "final_sale_price", null: false
+    t.integer "sale_price_satisfaction", null: false
+    t.integer "agency_type", null: false
+    t.string "title", null: false
+    t.integer "sale_reason", null: false
+    t.integer "concerns", null: false
+    t.integer "decision_factor", null: false
+    t.integer "service_satisfaction", null: false
+    t.string "service_satisfaction_reason", null: false
+    t.string "advice_for_next", null: false
+    t.string "complaint", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["branch_id"], name: "index_sale_reviews_on_branch_id"
+    t.index ["city_id"], name: "index_sale_reviews_on_city_id"
+  end
+
   add_foreign_key "branch_city_assessables", "branches"
   add_foreign_key "branch_city_assessables", "cities"
   add_foreign_key "branches", "cities"
   add_foreign_key "branches", "companies"
   add_foreign_key "cities", "prefectures"
+  add_foreign_key "sale_reviews", "branches"
+  add_foreign_key "sale_reviews", "cities"
 end
