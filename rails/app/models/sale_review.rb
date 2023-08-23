@@ -17,7 +17,7 @@ class SaleReview < ApplicationRecord
 
   enum discount: {
     discounted: 0,
-    not_discounted: 10,
+    not_discounted: 10
   }
 
   enum property_type: {

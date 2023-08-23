@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SaleReviewRaw < ApplicationRecord
   belongs_to :branch
   belongs_to :city
@@ -10,7 +12,7 @@ class SaleReviewRaw < ApplicationRecord
 
   enum discount: {
     discounted: 0,
-    not_discounted: 10,
+    not_discounted: 10
   }
 
   enum property_type: {
