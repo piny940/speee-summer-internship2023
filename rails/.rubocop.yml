@@ -14,12 +14,12 @@ AllCops:
     - tmp/**/*
     - public/**/*
 
-# モデルの削除は現段階では想定していないため、一旦rubocopのチェックをfalseにしておく
-Rails/HasManyOrHasOneDependent:
-  Enables: false
-
 Rails:
   Enabled: true
+
+# モデルの削除は現段階では想定していないため、一旦rubocopのチェックをfalseにしておく
+namt:
+  Enables: false
 
 Style/Documentation:
   Enabled: false
