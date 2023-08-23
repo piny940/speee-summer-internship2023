@@ -1,13 +1,15 @@
 class CreateSaleReviews < ActiveRecord::Migration[7.0]
   def change
     create_table :sale_reviews do |t|
+      t.integer :status # 公開状況
+
       t.references :branch, null: false, foreign_key: true
       t.string :name, null: false
       t.integer :gender, null: false
       t.integer :age, null: false
       t.references :city, null: false, foreign_key: true
       t.string :address, null: false
-      t.integer :property_type, null: false
+      t.integer :property_type, null: false # 物件種別
       t.integer :previous_experience, null: false # 売却回数
       t.datetime :begin_consideration_period, null: false # 売却検討時期
       t.datetime :assessment_request_period, null: false # 査定依頼時期
@@ -31,7 +33,6 @@ class CreateSaleReviews < ActiveRecord::Migration[7.0]
       t.string :service_satisfaction_reason, null: false # 不動産会社の対応満足度の理由
       t.string :advice_for_next, null: false # 今後売却する人へのアドバイス
       t.string :complaint, null: false, default: '' # 不動産会社に改善してほしい点
-
 
 
       t.timestamps
