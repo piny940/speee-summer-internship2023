@@ -22,7 +22,7 @@ class City < ApplicationRecord
       city.save!
 
       # 100行ごとに出力
-      Rails.logger.debug { "Line #{idx} OK" } if (idx % 100).zero?
+      Logger.new($stdout).debug "Line #{idx} OK" if (idx % 100).zero?
     end
   end
 end
