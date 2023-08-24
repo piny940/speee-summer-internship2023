@@ -119,13 +119,12 @@ class SaleReview < ApplicationRecord
         title: row[24],
         sale_reason: SALE_REASONS[row[25]],
         concerns: row[26],
-        decision_factor: row[27] || '',
+        decision_factor: row[27],
         service_satisfaction: row[28],
         service_satisfaction_reason: row[29],
         advice_for_next: row[30],
         complaint: row[31] || 0
       )
-      p sale_review, row[27] || '' if row[27].nil?
       sale_review.save!
 
       # 100行ごとに出力
