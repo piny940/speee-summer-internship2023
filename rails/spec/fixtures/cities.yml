@@ -1,9 +1,9 @@
 one:
   name: 檜山郡江差町
-  yomi: ヒヤマグンエサシチョウ
+  name_yomi: ヒヤマグンエサシチョウ
   prefecture: one
 
 two:
   name: 札幌市東区
-  yomi: サッポロシヒガシク
+  name_yomi: サッポロシヒガシク
   prefecture: one
