@@ -1,5 +1,40 @@
 # frozen_string_literal: true
 
+GENDERS = {
+  '男性' => 'male',
+  '女性' => 'female',
+  'その他・不明' => 'other'
+}.freeze
+PROPERTY_TYPES = {
+  'マンション' => 'apartment',
+  '戸建て' => 'house',
+  '土地' => 'land'
+}.freeze
+PREVIOUS_EXPERIENCES = {
+  '初めて' => 'first',
+  '2回目' => 'second',
+  '3回以上' => 'more'
+}.freeze
+DISCOUNTEDS = {
+  1 => true,
+  0 => false
+}.freeze
+AGENCY_TYPES = {
+  1 => 'senzoku_sennin',
+  2 => 'sennin',
+  3 => 'ippan',
+  4 => 'other'
+}.freeze
+SALE_REASONS = {
+  1 => 'moving',
+  2 => 'inheritance',
+  3 => 'job_change',
+  4 => 'divorce',
+  5 => 'assets_management',
+  6 => 'financial',
+  99 => 'other'
+}.freeze
+
 class SaleReview < ApplicationRecord
   belongs_to :branch
   belongs_to :city
@@ -47,37 +82,9 @@ class SaleReview < ApplicationRecord
   def self.create_sale_reviews_from_csv(path)
     data = CSV.read(path)[2..]
     data.each do |row|
-      branch = Branch.find(row[1])
-      prefecture = Prefecture.find_by(name: row[5])
+      Branch.find(row[1])
+      Prefecture.find_by(name: row[5])
       city = City.find_by(name: row[6])
-      gender = case row[3]
-        when '男性' then 'male'
-        when '女性' then 'female'
-        else 'other'
-      property_type = case row[8]
-        when 'マンション' then 'apartment'
-        when '戸建て' then 'house'
-        when '土地' then 'land'
-      previous_experience = case row[9]
-        when '初めて' then 'first'
-        when '2回目' then 'second'
-        when '3回以上' then 'more'
-      discounted = case row[18]
-        when 1 then true
-        when 0 then false
-      agency_type = case row[23]
-        when 1 then 'senzoku_sennin'
-        when 2 then 'sennin'
-        when 3 then 'ippan'
-        when 4 then 'other'
-      sale_reason = case row[25]
-        when 1 then 'moving'
-        when 2 then 'inheritance'
-        when 3 then 'job_change'
-        when 4 then 'divorce'
-        when 5 then 'assets_management'
-        when 6 then 'financial'
-        else 'other'
 
       # 店舗・氏名・不動産会社の対応満足度の理由の3つが全て同じ口コミは同一の口コミとみなして更新を行う
       sale_review = find_or_initialize_by(
@@ -88,12 +95,12 @@ class SaleReview < ApplicationRecord
       sale_review.assign_attributes(
         publishment: 'published', # CSVから取り込んだ口コミはデフォルトで公開とする
         name: row[2],
-        gender:,
+        gender: GENDERS[row[3]],
         age: row[4],
         city_id: city.id,
         address: row[7],
-        property_type:,
-        previous_experience:,
+        property_type: PROPERTY_TYPES[row[8]],
+        previous_experience: PREVIOUS_EXPERIENCES[row[9]],
         begin_consideration_period: row[10],
         assessment_request_period: row[11],
         begin_sale_period: row[12],
@@ -102,14 +109,14 @@ class SaleReview < ApplicationRecord
         speed_satisfaction: row[15],
         assessed_price: row[16],
         begin_sale_price: row[17],
-        discounted:,
+        discounted: DISCOUNTEDS[row[18]],
         discounted_period_from_begin_sale: row[19],
         discount_amount: row[20],
         final_sale_price: row[21],
         sale_price_satisfaction: row[22],
-        agency_type:,
+        agency_type: AGENCY_TYPES[row[23]],
         title: row[24],
-        sale_reason:,
+        sale_reason: SALE_REASONS[row[25]],
         concerns: row[26],
         decision_factor: row[27],
         service_satisfaction: row[28],
