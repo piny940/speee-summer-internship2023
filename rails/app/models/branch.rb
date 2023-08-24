@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'csv'
 
 class Branch < ApplicationRecord
@@ -18,11 +19,9 @@ class Branch < ApplicationRecord
       company.save!
 
       # 店舗が属する市を取得
-      prefecture = Prefecture.find_by(name: row[6])
+      Prefecture.find_by(name: row[6])
       city = City.find_by(name: row[7])
-      if city.nil?
-        p row[7]
-      end
+      Rails.logger.debug row[7] if city.nil?
 
       branch = find_or_initialize_by(id: row[3])
       branch.assign_attributes(
@@ -37,18 +36,18 @@ class Branch < ApplicationRecord
         business_hours: row[11],
         regular_holiday: row[12],
         catchphrase: row[13],
-        introduction: row[14],
+        introduction: row[14]
       )
       branch.save!
 
       # 査定可能エリアを登録
       row[15].split(',').each do |assessable_city_id|
         branch.assessable_cities << City.find(assessable_city_id) \
-          if branch.assessable_cities.select(:id).exclude?(assessable_city_id)
+          if branch.assessable_cities.pluck(:id).exclude?(assessable_city_id.to_i)
       end
 
       # 100行ごとに出力
-      p "Line #{idx} OK" if (idx % 100).zero?
+      Logger.new($stdout).debug "Line #{idx} OK" if (idx % 100).zero?
     end
   end
 end
