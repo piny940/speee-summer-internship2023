@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_24_020954) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_071334) do
   create_table "branch_city_assessables", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "city_id", null: false
     t.bigint "branch_id", null: false
@@ -85,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_020954) do
     t.string "title", null: false, comment: "見出し"
     t.integer "sale_reason", null: false, comment: "売却理由"
     t.integer "concerns", null: false, comment: "売却時に不安だったこと"
-    t.integer "decision_factor", null: false, comment: "この会社に決めた理由"
+    t.string "decision_factor", null: false, comment: "この会社に決めた理由"
     t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度の理由"
     t.string "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
     t.string "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
@@ -123,7 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_020954) do
     t.string "title", null: false, comment: "見出し"
     t.integer "sale_reason", null: false, comment: "売却理由"
     t.integer "concerns", null: false, comment: "売却時に不安だったこと"
-    t.integer "decision_factor", null: false, comment: "この会社に決めた理由"
+    t.string "decision_factor", null: false, comment: "この会社に決めた理由"
     t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度の理由"
     t.string "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
     t.string "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
