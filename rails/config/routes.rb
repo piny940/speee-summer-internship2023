@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   mount KomachiHeartbeat::Engine => '/ops'
 
   root 'homes#show'
+  get '/assessments/success', to: 'assessments#success'
 
-  # この部分はさとしょーのIssue#14企業ページとコンフリクトする。適宜解決する。
   resources :branches, only: %i[show] do
-    resource :assessments, only: %i[new]
+    resource :assessments, only: %i[new create]
   end
 end

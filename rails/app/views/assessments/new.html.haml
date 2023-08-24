@@ -3,3 +3,67 @@
 .d-flex.flex-column.bd-highlight
   .page_title
     査定依頼フォーム
+    =form_with(model: @assessment_user, url: branch_assessments_path) do |f|
+      -if @assessment_user&.errors&.any?
+        -@assessment_user.errors.full_messages.each do |msg|
+          .text-danger=msg
+      -if @assessment&.errors&.any?
+        -@assessment.errors.full_messages.each do |msg|
+          .text-danger=msg
+      
+      .d-flex.flex-row
+        .name_label 
+          お名前
+        =f.text_field :last_name, class: 'form-control', placeholder: "田中"
+        =f.text_field :first_name, class: 'form-control', placeholder: "太郎"
+      
+      .d-flex.flex-row
+        .name_kana_label
+          フリガナ
+        =f.text_field :last_name_kana, class: 'form-control', placeholder: "タナカ"
+        =f.text_field :first_name_kana, class: 'form-control', placeholder: "タロウ"
+
+      =f.label :email, "メールアドレス"
+      =f.text_field :email, class: 'form-control'
+
+      =f.label :tel, "電話番号"
+      =f.text_field :tel, class: 'form-control'
+
+      =f.fields_for :assessment, @assessment do |assessment_f|
+        =assessment_f.label :branch_id, "支店番号"
+        =assessment_f.number_field :branch_id, value: params[:branch_id], class: 'form-control'
+
+        =assessment_f.label :city_id, "市区町村ID"
+        =assessment_f.number_field :city_id, class: 'form-control'
+
+        =assessment_f.label :property_address, "物件住所（市区町村以下）"
+        =assessment_f.text_field :property_address, class: 'form-control'
+
+        .property_type
+          =assessment_f.label :property_type, "物件種別"
+          =assessment_f.select :property_type, [["分譲マンション", 1], ["一戸建て", 2], ["土地", 3]], class: 'form-control'
+
+        =assessment_f.label :property_exclusive_area, "専有面積"
+        =assessment_f.number_field :property_exclusive_area, step: "0.001", class: 'form-control'
+
+        =assessment_f.label :property_land_area, "土地面積"
+        =assessment_f.number_field :property_land_area, step: "0.001", class: 'form-control'
+
+        =assessment_f.label :property_building_area, "建物面積"
+        =assessment_f.number_field :property_building_area, step: "0.001",class: 'form-control'
+
+        .property_building_area_unit
+          =assessment_f.label :property_building_area_unit, "建物面積単位"
+          =assessment_f.select :property_building_area_unit, [["平方メートル", 1], ["坪", 2]], class: 'form-control'
+
+        =assessment_f.label :property_floor_area, "延床面積"
+        =assessment_f.number_field :property_floor_area, step: "0.001", class: 'form-control'
+
+        .property_room_type
+          =assessment_f.label :property_room_plan, "間取り"
+          =assessment_f.select :property_room_plan, [['1R(ワンルーム)', 1], ['1K / 1DK', 2], ['1LK / 1LDK', 3], ['2K / 2DK', 4], ['2LK / 2LDK', 5], ['3K / 3DK', 6], ['3LK / 3LDK', 7], ['4K / 4DK', 8], ['4LK / 4LDK', 9], ['5K / 5DK', 10], ['5LK / 5LDK', 11], ['6K / 6DK', 12], ['6LK / 6LDK以上', 13]], class: 'form-control'
+
+        =assessment_f.label :property_constructed_year, "竣工年"
+        =assessment_f.number_field :property_constructed_year, class: 'form-control'
+
+      =f.submit "査定依頼する", class: "btn btn-primary"
