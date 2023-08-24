@@ -102,7 +102,6 @@ class SaleReview < ApplicationRecord # rubocop:disable Metrics/ClassLength
   }.freeze
   def self.csv_row_to_hash(row)
     branch = Branch.find(row[1])
-    prefecture = Prefecture.find_by(name: row[5])
     city = City.find_by(name: row[6])
 
     {
