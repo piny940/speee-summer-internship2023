@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BreadcrumbsHelper
   def breadcrumbs(controller_name, action_name)
     current_page_name = "#{controller_name}##{action_name}"
