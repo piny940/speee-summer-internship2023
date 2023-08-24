@@ -18,13 +18,11 @@ def create_cities_from_csv(path)
     city.assign_attributes(
       prefecture_id: row[1],
       name: row[2],
-      name_yomi: row[3],
+      name_yomi: row[3]
     )
     city.save!
 
     # 100行ごとに出力
-    if idx % 100 == 0
-      p "Line #{idx} OK"
-    end
+    Rails.logger.debug { "Line #{idx} OK" } if (idx % 100).zero?
   end
 end
