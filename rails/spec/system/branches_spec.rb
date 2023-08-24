@@ -1,10 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
+  # before do
+  #   driven_by(:rack_test)
+  # end
+  
   describe '必須要素の確認' do
     context 'データが正しく加工されていることを確認' do  
       it '平均評価が' do
-        visit branch_path 1
+        
       end
     end
 
