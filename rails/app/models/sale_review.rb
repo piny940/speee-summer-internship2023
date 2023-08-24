@@ -101,13 +101,14 @@ class SaleReview < ApplicationRecord # rubocop:disable Metrics/ClassLength
     '99' => 'other'
   }.freeze
   def self.csv_row_to_hash(row)
-    Branch.find(row[1])
-    Prefecture.find_by(name: row[5])
+    branch = Branch.find(row[1])
+    prefecture = Prefecture.find_by(name: row[5])
     city = City.find_by(name: row[6])
 
     {
       publishment: 'published', # CSVから入ってきたデータはデフォルトで公開する
       name: row[2],
+      branch_id: branch.id,
       gender: GENDERS[row[3]],
       age: row[4],
       city_id: city.id,
