@@ -21,7 +21,6 @@ class Branch < ApplicationRecord
       # 店舗が属する市を取得
       Prefecture.find_by(name: row[6])
       city = City.find_by(name: row[7])
-      Rails.logger.debug row[7] if city.nil?
 
       branch = find_or_initialize_by(id: row[3])
       branch.assign_attributes(
