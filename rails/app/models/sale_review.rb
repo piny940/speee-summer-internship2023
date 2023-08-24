@@ -66,8 +66,6 @@ class SaleReview < ApplicationRecord # rubocop:disable Metrics/ClassLength
     end
   end
 
-  private
-
   GENDERS = {
     '男性' => 'male',
     '女性' => 'female',
