@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_23_092905) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_020119) do
   create_table "branch_city_assessables", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "city_id", null: false
     t.bigint "branch_id", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_092905) do
 
   create_table "cities", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.string "yomi", null: false
+    t.string "name_yomi", null: false
     t.bigint "prefecture_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,7 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_092905) do
     t.integer "speed_satisfaction", null: false
     t.integer "assessed_price", null: false
     t.integer "begin_sale_price", null: false
-    t.integer "discount", null: false
     t.integer "discounted_period_from_begin_sale", default: -1, null: false
     t.integer "discount_amount", default: 0, null: false
     t.integer "final_sale_price", null: false
@@ -93,6 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_092905) do
     t.string "complaint", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "discounted", null: false
     t.index ["branch_id"], name: "index_sale_review_raws_on_branch_id"
     t.index ["city_id"], name: "index_sale_review_raws_on_city_id"
   end
@@ -115,7 +115,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_092905) do
     t.integer "speed_satisfaction", null: false
     t.integer "assessed_price", null: false
     t.integer "begin_sale_price", null: false
-    t.integer "discount", null: false
     t.integer "discounted_period_from_begin_sale", default: -1, null: false
     t.integer "discount_amount", default: 0, null: false
     t.integer "final_sale_price", null: false
@@ -131,6 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_092905) do
     t.string "complaint", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "discounted", null: false
     t.index ["branch_id"], name: "index_sale_reviews_on_branch_id"
     t.index ["city_id"], name: "index_sale_reviews_on_city_id"
   end
