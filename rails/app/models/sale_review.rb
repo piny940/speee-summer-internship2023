@@ -127,6 +127,45 @@ class SaleReview < ApplicationRecord
       )
       sale_review.save!
 
+      # RawSaleReviewの作成も同時に行う
+      raw_sale_review = RawSaleReview.find_or_initialize_by(
+        branch_id: row[1],
+        name: row[2],
+        service_satisfaction_reason: row[29]
+      )
+      raw_sale_review.assign_attributes(
+        name: row[2],
+        gender: GENDERS[row[3]],
+        age: row[4],
+        city_id: city.id,
+        address: row[7],
+        property_type: PROPERTY_TYPES[row[8]],
+        previous_experience: PREVIOUS_EXPERIENCES[row[9]],
+        begin_consideration_period: row[10],
+        assessment_request_period: row[11],
+        begin_sale_period: row[12],
+        sale_period: row[13],
+        transfer_period: row[14],
+        speed_satisfaction: row[15],
+        assessed_price: row[16],
+        begin_sale_price: row[17],
+        discounted: DISCOUNTEDS[row[18]],
+        discounted_period_from_begin_sale: row[19] || -1,
+        discount_amount: row[20] || 0,
+        final_sale_price: row[21],
+        sale_price_satisfaction: row[22],
+        agency_type: AGENCY_TYPES[row[23]],
+        title: row[24],
+        sale_reason: SALE_REASONS[row[25]],
+        concerns: row[26],
+        decision_factor: row[27],
+        service_satisfaction: row[28],
+        service_satisfaction_reason: row[29],
+        advice_for_next: row[30],
+        complaint: row[31] || 0
+      )
+      raw_sale_review.save!
+
       # 100行ごとに出力
       Logger.new($stdout).debug "Line #{idx} OK" if (idx % 100).zero?
     end
