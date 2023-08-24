@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_24_071334) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_075915) do
+  create_table "assessment_users", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "last_name_kana", null: false
+    t.string "email", null: false
+    t.string "tel", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "assessments", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "assessment_user_id", null: false
+    t.bigint "branch_id", null: false
+    t.bigint "city_id", null: false
+    t.string "property_address", null: false
+    t.integer "property_type", null: false
+    t.float "property_exclusive_area", null: false
+    t.float "property_land_area", null: false
+    t.float "property_building_area", null: false
+    t.integer "property_building_area_unit", null: false
+    t.float "property_floor_area", null: false
+    t.integer "property_room_plan", null: false
+    t.integer "property_constructed_year", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assessment_user_id"], name: "index_assessments_on_assessment_user_id"
+    t.index ["branch_id"], name: "index_assessments_on_branch_id"
+    t.index ["city_id"], name: "index_assessments_on_city_id"
+  end
+
   create_table "branch_city_assessables", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "city_id", null: false
     t.bigint "branch_id", null: false
@@ -135,6 +166,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_071334) do
     t.index ["city_id"], name: "index_sale_reviews_on_city_id"
   end
 
+  add_foreign_key "assessments", "assessment_users"
+  add_foreign_key "assessments", "branches"
+  add_foreign_key "assessments", "cities"
   add_foreign_key "branch_city_assessables", "branches"
   add_foreign_key "branch_city_assessables", "cities"
   add_foreign_key "branches", "cities"
