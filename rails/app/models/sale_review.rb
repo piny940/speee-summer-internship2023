@@ -51,22 +51,13 @@ class SaleReview < ApplicationRecord # rubocop:disable Metrics/ClassLength
     data.each_with_index do |row, idx|
       review_data = csv_row_to_hash(row)
 
-      # 店舗・氏名・不動産会社の対応満足度の理由の3つが全て同じ口コミは同一の口コミとみなして更新を行う
-      sale_review = find_or_initialize_by(
-        branch_id: row[1],
-        name: row[2],
-        service_satisfaction_reason: row[29]
-      )
+      sale_review = find_or_initialize_by(review_data)
       sale_review.assign_attributes(review_data)
       sale_review.save!
 
       # RawSaleReviewの作成も同時に行う
-      raw_sale_review = RawSaleReview.find_or_initialize_by(
-        branch_id: row[1],
-        name: row[2],
-        service_satisfaction_reason: row[29]
-      )
       review_data.delete(:publishment) # 公開/非公開はRawSaleReviewでは考えない
+      raw_sale_review = RawSaleReview.find_or_initialize_by(review_data)
       raw_sale_review.assign_attributes(review_data)
       raw_sale_review.save!
 
@@ -74,6 +65,8 @@ class SaleReview < ApplicationRecord # rubocop:disable Metrics/ClassLength
       Logger.new($stdout).debug "Line #{idx} OK" if (idx % 100).zero?
     end
   end
+
+  private
 
   GENDERS = {
     '男性' => 'male',
