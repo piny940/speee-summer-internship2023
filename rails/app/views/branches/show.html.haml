@@ -16,6 +16,7 @@
         グラフ
       %p.w-75.d-flex.justify-content-center
         売却スコア
+        %div #{@branch.average_sale_score}
 
     .col
       .fw-bold.mb-3 #{@branch.company.name}について
@@ -29,13 +30,13 @@
         %li 定休日：#{@branch.regular_holiday}
 
   .row.mt-5
-    .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@debug_placeholder}）
+    .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.average_service_satisfaction}）
     
     - @sale_reviews.each do |review|
       = link_to root_path, class: "review-card" do 
         .card.w-75.mb-3
           .card-body
-            .card-title #{review.title}：★#{review.sale_price_satisfaction}
+            .card-title #{review.title}：★#{review.service_satisfaction}
             .card-text.mt-2 #{review.service_satisfaction_reason}
             -# .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{(review.final_sale_price / 10000).to_s(:delimited)}万円（#{review.city.prefecture.name}#{review.city.name}・#{review.sale_period.strftime("%Y年%m月")}に売却）
             .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{(review.final_sale_price / 10000).to_fs(:delimited)}万円（#{review.city.prefecture.name}#{review.city.name}・#{review.sale_period.strftime("%Y年%m月")}に売却）
