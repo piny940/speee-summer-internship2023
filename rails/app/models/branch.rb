@@ -6,5 +6,5 @@ class Branch < ApplicationRecord
   has_many :branch_city_assessables, dependent: :destroy
   has_many :assessable_cities, through: :branch_city_assessables, source: :city
   has_many :sale_reviews, dependent: :destroy
-  has_many :sale_review_raws, dependent: :destroy
+  has_many :raw_sale_reviews, dependent: :destroy
 end
