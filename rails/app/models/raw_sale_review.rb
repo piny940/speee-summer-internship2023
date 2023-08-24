@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SaleReviewRaw < ApplicationRecord
+class RawSaleReview < ApplicationRecord
   belongs_to :branch
   belongs_to :city
 
