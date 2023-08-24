@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'csv'
 
 GENDERS = {
   '男性' => 'male',
@@ -16,23 +17,23 @@ PREVIOUS_EXPERIENCES = {
   '3回以上' => 'more'
 }.freeze
 DISCOUNTEDS = {
-  1 => true,
-  0 => false
+  '1' => true,
+  '0' => false
 }.freeze
 AGENCY_TYPES = {
-  1 => 'senzoku_sennin',
-  2 => 'sennin',
-  3 => 'ippan',
-  4 => 'other'
+  '1' => 'senzoku_sennin',
+  '2' => 'sennin',
+  '3' => 'ippan',
+  '4' => 'other'
 }.freeze
 SALE_REASONS = {
-  1 => 'moving',
-  2 => 'inheritance',
-  3 => 'job_change',
-  4 => 'divorce',
-  5 => 'assets_management',
-  6 => 'financial',
-  99 => 'other'
+  '1' => 'moving',
+  '2' => 'inheritance',
+  '3' => 'job_change',
+  '4' => 'divorce',
+  '5' => 'assets_management',
+  '6' => 'financial',
+  '99' => 'other'
 }.freeze
 
 class SaleReview < ApplicationRecord
@@ -81,7 +82,7 @@ class SaleReview < ApplicationRecord
 
   def self.create_sale_reviews_from_csv(path)
     data = CSV.read(path)[2..]
-    data.each do |row|
+    data.each_with_index do |row, idx|
       Branch.find(row[1])
       Prefecture.find_by(name: row[5])
       city = City.find_by(name: row[6])
@@ -110,20 +111,25 @@ class SaleReview < ApplicationRecord
         assessed_price: row[16],
         begin_sale_price: row[17],
         discounted: DISCOUNTEDS[row[18]],
-        discounted_period_from_begin_sale: row[19],
-        discount_amount: row[20],
+        discounted_period_from_begin_sale: row[19] || -1,
+        discount_amount: row[20] || 0,
         final_sale_price: row[21],
         sale_price_satisfaction: row[22],
         agency_type: AGENCY_TYPES[row[23]],
         title: row[24],
         sale_reason: SALE_REASONS[row[25]],
         concerns: row[26],
-        decision_factor: row[27],
+        decision_factor: row[27] || '',
         service_satisfaction: row[28],
         service_satisfaction_reason: row[29],
         advice_for_next: row[30],
-        complaint: row[31]
+        complaint: row[31] || 0
       )
+      p sale_review, row[27] || '' if row[27].nil?
+      sale_review.save!
+
+      # 100行ごとに出力
+      Logger.new($stdout).debug "Line #{idx} OK" if (idx % 100).zero?
     end
   end
 end
