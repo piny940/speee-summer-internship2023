@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   mount KomachiHeartbeat::Engine => '/ops'
 
   root 'homes#show'
-  resources :branches, only: [:show]  # 企業ページ
+  get '/assessments/success', to: 'assessments#success'
+
+  resources :branches, only: %i[show] do
+    resource :assessments, only: %i[new create]
+  end
 end
