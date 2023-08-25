@@ -29,12 +29,12 @@ class CreateSaleReviews < ActiveRecord::Migration[7.0]
       t.integer :agency_type, null: false, comment: '媒介契約の形態'
       t.string :title, null: false, comment: '見出し'
       t.integer :sale_reason, null: false, comment: '売却理由'
-      t.string :concerns, null: false, comment: '売却時に不安だったこと'
+      t.text :concerns, null: false, comment: '売却時に不安だったこと'
       t.integer :decision_factor, null: false, comment: 'この会社に決めた理由'
       t.integer :service_satisfaction, null: false, comment: '不動産会社の対応満足度'
-      t.string :service_satisfaction_reason, null: false, comment: '不動産会社の対応満足度の理由'
-      t.string :advice_for_next, null: false, comment: '今後売却する人へのアドバイス'
-      t.string :complaint, null: false, default: '', comment: '不動産会社に改善してほしい点'
+      t.text :service_satisfaction_reason, null: false, comment: '不動産会社の対応満足度の理由'
+      t.text :advice_for_next, null: false, comment: '今後売却する人へのアドバイス'
+      t.text :complaint, null: false, comment: '不動産会社に改善してほしい点'
 
       t.timestamps
     end
