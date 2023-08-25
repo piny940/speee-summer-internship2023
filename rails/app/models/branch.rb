@@ -64,15 +64,15 @@ class Branch < ApplicationRecord
 
   private
 
-    def avg_service_satisfaction
-      sale_reviews.average(:service_satisfaction)
-    end
+  def avg_service_satisfaction
+    sale_reviews.average(:service_satisfaction)
+  end
 
-    def avg_sale_price_satisfaction
-      sale_reviews.average(:sale_price_satisfaction)      
-    end
+  def avg_sale_price_satisfaction
+    sale_reviews.average(:sale_price_satisfaction)
+  end
 
-    def avge_speed_satisfaction
-      sale_reviews.average(:speed_satisfaction)  
-    end
+  def avge_speed_satisfaction
+    sale_reviews.average(:speed_satisfaction)
+  end
 end
