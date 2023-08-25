@@ -327,6 +327,7 @@ DEPENDENCIES
   capybara
   debug
   enum_help
+  factory_bot_rails
   haml
   haml-rails
   importmap-rails
