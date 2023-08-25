@@ -1,7 +1,7 @@
 FactoryBot.define do
     factory :branch do
-      :company  # belongs_to company
-      :city
+      association :company  # belongs_to company
+      association :city 
 
       # sequence(:company_id) { |n| "#{n}" }
       # sequence(:city_id) { |n| "#{n}" }
