@@ -15,3 +15,6 @@
     = @sale_review.sale_reason_i18n
   %li
     売却経験 : 今回の売却が#{@sale_review.previous_experience_i18n}
+
+= render 'sale_reviews/description', title: '売却時に不安だったこと', content: @sale_review.concerns
+= render 'sale_reviews/description', title: 'この会社に決めた決め手', content: @sale_review.concerns
