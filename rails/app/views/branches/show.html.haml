@@ -1,0 +1,47 @@
+.branch-wrapper
+  %h1.text-center #{@branch.company.name} #{@branch.name}
+  .row.mt-5.pb-5
+    .col-6
+      %h2.h3 #{@branch.catchphrase}
+      %div.text-muted #{@branch.introduction}
+    
+    .col-1
+    
+    .col-4.d-flex.justify-content-end
+      %img.img-fluid{ alt: "ロゴ画像", src: "#{@branch.logo_url}" }/
+
+  .row.mt-5.pb-5
+    .col.text-center
+      .w-75.h-75.border.border-5.d-flex.align-items-center.justify-content-center
+        グラフ
+      %p.w-75.d-flex.justify-content-center
+        売却スコア
+        %div #{number_with_precision(@branch.average_sale_score, precision: 1)}
+
+    .col
+      .fw-bold.mb-3 #{@branch.company.name}について
+      %ul.list-unstyled
+        %li 企業名：#{@branch.company.name}
+        %li 郵便番号：#{@branch.post_number}
+        %li 住所：#{@branch.city.prefecture.name}#{@branch.city.name}#{@branch.address}
+        %li 電話番号：#{@branch.phone}
+        %li FAX：#{@branch.fax_number}
+        %li 営業時間：#{@branch.business_hours}
+        %li 定休日：#{@branch.regular_holiday}
+
+  .row.mt-5
+    .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.average_service_satisfaction}）
+    
+    - @sale_reviews.each do |review|
+      = link_to root_path, class: "review-card" do 
+        .card.w-75.mb-3
+          .card-body
+            .card-title #{review.title}：★#{review.service_satisfaction}
+            .card-text.mt-2 #{review.service_satisfaction_reason}
+            .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{format_price review.final_sale_price}（#{review.city.prefecture.name}#{review.city.name}・#{review.sale_period.strftime("%Y年%m月")}に売却）
+
+
+  %div=paginate @sale_reviews
+  .row.pt-5.d-flex.justify-content-center
+    = link_to '#', class: "btn text-center w-auto btn--link" do
+      査定依頼をする

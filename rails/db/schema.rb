@@ -124,7 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_071334) do
     t.integer "sale_reason", null: false, comment: "売却理由"
     t.integer "concerns", null: false, comment: "売却時に不安だったこと"
     t.string "decision_factor", null: false, comment: "この会社に決めた理由"
-    t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度の理由"
+    t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度"
     t.string "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
     t.string "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
     t.string "complaint", default: "", null: false, comment: "不動産会社に改善してほしい点"
