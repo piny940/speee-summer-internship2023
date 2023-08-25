@@ -11,6 +11,7 @@ RSpec.describe "Users", type: :system do
     context 'データが正しく加工されていることを確認' do  
       it '平均評価が' do
         visit branch_path branch
+        expect(find('.btn.text-center.w-auto.btn--link')).to have_content '査定依頼をする'
       end
     end
 
