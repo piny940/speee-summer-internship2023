@@ -1,0 +1,30 @@
+ja:
+  enums:
+    sale_review:
+      gender:
+        male: 男性
+        female: 女性
+        other: その他・不明
+      property_type:
+        apartment: マンション
+        house: 戸建て
+        land: 土地
+      previous_experience:
+        first: 初めて
+        second: 2回目
+        more: 3回目以上
+      agency_type:
+        senzoku_sennin: 専属専任媒介契約
+        sennin: 専任媒介契約
+        ippan: 一般媒介契約
+        other: わからない
+      sale_reason:
+        moving: 住み替えのため
+        inheritance: 相続のため
+        job_change: 転勤、転職のため
+        divorce: 離婚のため
+        assets_management: 資産整理のため
+        financial: 金銭的な理由のため
+        other: その他
+      
+
