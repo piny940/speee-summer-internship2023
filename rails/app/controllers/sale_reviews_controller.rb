@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SaleReviewsController < ApplicationController
   before_action :set_sale_review, only: %i[show]
 
