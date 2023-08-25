@@ -36,15 +36,15 @@ class AssessmentUser < ApplicationRecord
     private
       # 氏名合計文字数制限(苗字文字数＋下の名前文字数 + 半角スペース<=32)
       def validate_name_length
-        if last_name.length + first_name.length + 1 > 32
-          errors.add(:last_name, ": 姓・名の合計文字数は31文字以下にしてください。")
-        end
+        return if last_name.length + first_name.length + 1 <= 32
+
+        errors.add(:last_name, ": 姓・名の合計文字数は31文字以下にしてください。")
       end
       
       # 氏名フリガナ合計文字数制限(苗字文字数＋下の名前文字数 + 半角スペース<=64)
       def validate_name_kana_length
-        if last_name_kana.length + first_name_kana.length + 1 > 64
-          errors.add(:last_name_kana, ": 姓・名フリガナの合計文字数は63文字以下にしてください。")
-        end
+        return if last_name_kana.length + first_name_kana.length + 1 <= 64
+
+        errors.add(:last_name_kana, ": 姓・名フリガナの合計文字数は63文字以下にしてください。")
       end
 end

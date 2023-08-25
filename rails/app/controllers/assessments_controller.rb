@@ -11,15 +11,10 @@ class AssessmentsController < ApplicationController
     @assessment_user = AssessmentUser.new(assessment_user_params)
     @assessment = @assessment_user.assessments.new(assessment_params)
     
-    if @assessment_user.valid? && @assessment.valid?
-      ActiveRecord::Base.transaction do
-        @assessment_user.save!
-        @assessment.save!
-      end
-      redirect_to assessments_success_path
-    else
-      render 'new', status: :bad_request
-    end
+    save_assessment_user_and_assessment
+  end
+
+  def succsess
   end
 
   private 
@@ -43,6 +38,15 @@ class AssessmentsController < ApplicationController
                                          :property_constructed_year)
     end
 
-  def succsess
-  end
+    def save_assessment_user_and_assessment
+      if @assessment_user.valid? && @assessment.valid?
+        ActiveRecord::Base.transaction do
+          @assessment_user.save!
+          @assessment.save!
+        end
+        redirect_to assessments_success_path
+      else
+        render 'new', status: :bad_request
+      end
+    end
 end

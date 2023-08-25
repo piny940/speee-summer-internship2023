@@ -3,24 +3,26 @@ class Assessment < ApplicationRecord
   belongs_to :branch
   belongs_to :city
 
-  validates :branch_id, presence: true
-  validates :city_id, presence: true
-  validates :property_address, presence: true
-  validates :property_type, presence: true,
-                            numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3}
-  validates :property_exclusive_area, presence: true,
-                                      numericality: true
-  validates :property_land_area, presence: true,
-                                 numericality: true
-  validates :property_building_area, presence: true, 
-                                     numericality: true
-  validates :property_building_area_unit, presence: true, 
-                                          numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 2}
-  validates :property_floor_area, presence: true,
-                                  numericality: true,
-                                  numericality: true
-  validates :property_room_plan, presence: true,
-                                 numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 13}
-  validates :property_constructed_year, presence: true,
-                                        numericality: { only_integer: true, greater_than_or_equal_to: 1925, less_than_or_equal_to: 2016}
+  with_options presence: true do
+    validates :property_type
+    validates :property_exclusive_area
+    validates :property_land_area
+    validates :property_building_area
+    validates :property_building_area_unit
+    validates :property_floor_area
+    validates :property_room_plan
+    validates :property_constructed_year
+  end
+
+  with_options numericality: true do
+    validates :property_exclusive_area
+    validates :property_land_area
+    validates :property_building_area
+    validates :property_floor_area
+  end
+
+  validates :property_type, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3}
+  validates :property_building_area_unit, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 2}
+  validates :property_room_plan, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 13}
+  validates :property_constructed_year, numericality: { only_integer: true, greater_than_or_equal_to: 1925, less_than_or_equal_to: 2016}
 end

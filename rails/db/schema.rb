@@ -12,29 +12,29 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_08_24_075915) do
   create_table "assessment_users", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "first_name_kana", null: false
-    t.string "last_name_kana", null: false
-    t.string "email", null: false
-    t.string "tel", null: false
+    t.string "first_name", null: false, comment: "名"
+    t.string "last_name", null: false, comment: "姓"
+    t.string "first_name_kana", null: false, comment: "名フリガナ"
+    t.string "last_name_kana", null: false, comment: "姓フリガナ"
+    t.string "email", null: false, comment: "メールアドレス"
+    t.string "tel", null: false, comment: "電話番号"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "assessments", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.bigint "assessment_user_id", null: false
-    t.bigint "branch_id", null: false
-    t.bigint "city_id", null: false
-    t.string "property_address", null: false
-    t.integer "property_type", null: false
-    t.float "property_exclusive_area", null: false
-    t.float "property_land_area", null: false
-    t.float "property_building_area", null: false
-    t.integer "property_building_area_unit", null: false
-    t.float "property_floor_area", null: false
-    t.integer "property_room_plan", null: false
-    t.integer "property_constructed_year", null: false
+    t.bigint "assessment_user_id", null: false, comment: "assessment_userのidへの外部キー"
+    t.bigint "branch_id", null: false, comment: "branchのidへの外部キー"
+    t.bigint "city_id", null: false, comment: "cityのidへの外部キー"
+    t.string "property_address", null: false, comment: "対象物件の住所"
+    t.integer "property_type", null: false, comment: "象物件の物件種別"
+    t.float "property_exclusive_area", null: false, comment: "対象物件の専有面積"
+    t.float "property_land_area", null: false, comment: "対象物件の土地面積"
+    t.float "property_building_area", null: false, comment: "対象物件の建物面積"
+    t.integer "property_building_area_unit", null: false, comment: "建物面積の単位"
+    t.float "property_floor_area", null: false, comment: "対象物件の延床面積"
+    t.integer "property_room_plan", null: false, comment: "対象物件の間取り"
+    t.integer "property_constructed_year", null: false, comment: "対象物件の築年数(竣工年)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assessment_user_id"], name: "index_assessments_on_assessment_user_id"
