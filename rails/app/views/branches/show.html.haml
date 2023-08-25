@@ -16,7 +16,7 @@
         グラフ
       %p.w-75.d-flex.justify-content-center
         売却スコア
-        %div #{@branch.average_sale_score}
+        %div #{number_with_precision(@branch.average_sale_score, precision: 1)}
 
     .col
       .fw-bold.mb-3 #{@branch.company.name}について
@@ -38,8 +38,7 @@
           .card-body
             .card-title #{review.title}：★#{review.service_satisfaction}
             .card-text.mt-2 #{review.service_satisfaction_reason}
-            -# .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{(review.final_sale_price / 10000).to_s(:delimited)}万円（#{review.city.prefecture.name}#{review.city.name}・#{review.sale_period.strftime("%Y年%m月")}に売却）
-            .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{(review.final_sale_price / 10000).to_fs(:delimited)}万円（#{review.city.prefecture.name}#{review.city.name}・#{review.sale_period.strftime("%Y年%m月")}に売却）
+            .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{format_price review.final_sale_price}（#{review.city.prefecture.name}#{review.city.name}・#{review.sale_period.strftime("%Y年%m月")}に売却）
 
 
   %div=paginate @sale_reviews, theme: 'twitter-bootstrap-4'
