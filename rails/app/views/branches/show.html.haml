@@ -41,7 +41,7 @@
             .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{format_price review.final_sale_price}（#{review.city.prefecture.name}#{review.city.name}・#{review.sale_period.strftime("%Y年%m月")}に売却）
 
 
-  %div=paginate @sale_reviews, theme: 'twitter-bootstrap-4'
+  %div=paginate @sale_reviews
   .row.pt-5.d-flex.justify-content-center
     = link_to root_path, class: "btn text-center w-auto btn--link" do
       査定依頼をする
