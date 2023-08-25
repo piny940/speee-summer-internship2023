@@ -14,8 +14,6 @@ RSpec.describe "Users", type: :system do
 
     context '企業情報が正しく表示されていることを確認' do
     end
-
-    context ''
   end
 
   describe 'ページ遷移確認' do
