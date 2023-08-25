@@ -18,21 +18,8 @@ class AssessmentsController < ApplicationController
       end
       redirect_to assessments_success_path
     else
-      render 'new', status: :unprocessable_entity
+      render 'new', status: :bad_request
     end
-
-    # if @assessment_user.save
-    #   @assessment = @assessment_user.assessments.new
-    #   @assessment.assign_attributes(assessment_params)
-    #   if @assessment.save
-    #     # TODO: Sprint2の後続IssueにてAPIリクエストを行う
-    #     redirecto_to assessments_success_path
-    #   else
-    #     render 'new', status: :unprocessable_entity
-    #   end
-    # else
-    #   render 'new', status: :unprocessable_entity
-    # end
   end
 
   private 

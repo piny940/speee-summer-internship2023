@@ -1,18 +1,18 @@
 class CreateAssessments < ActiveRecord::Migration[7.0]
   def change
     create_table :assessments do |t|
-      t.references :assessment_user, null: false, foreign_key: true
-      t.references :branch, null: false, foreign_key: true
-      t.references :city, null: false, foreign_key: true
-      t.string :property_address, null: false
-      t.integer :property_type, null: false
-      t.float :property_exclusive_area, null: false
-      t.float :property_land_area, null: false
-      t.float :property_building_area, null: false
-      t.integer :property_building_area_unit, null: false
-      t.float :property_floor_area, null: false
-      t.integer :property_room_plan, null: false
-      t.integer :property_constructed_year, null: false
+      t.references :assessment_user, null: false, foreign_key: true, commnet: 'assessment_userのidへの外部キー'
+      t.references :branch, null: false, foreign_key: true, commnet: 'branchのidへの外部キー'
+      t.references :city, null: false, foreign_key: true, commnet: 'cityのidへの外部キー'
+      t.string :property_address, null: false, commnet: '対象物件の住所'
+      t.integer :property_type, null: false, commnet: '象物件の物件種別'
+      t.float :property_exclusive_area, null: false, commnet: '対象物件の専有面積'
+      t.float :property_land_area, null: false, commnet: '対象物件の土地面積'
+      t.float :property_building_area, null: false, commnet: '対象物件の建物面積'
+      t.integer :property_building_area_unit, null: false, commnet: '建物面積の単位'
+      t.float :property_floor_area, null: false, commnet: '対象物件の延床面積'
+      t.integer :property_room_plan, null: false, commnet: '対象物件の間取り'
+      t.integer :property_constructed_year, null: false, commnet: '対象物件の築年数(竣工年)'
 
       t.timestamps
     end
