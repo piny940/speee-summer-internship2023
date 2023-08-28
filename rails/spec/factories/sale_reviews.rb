@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :sale_review do
     association :branch
@@ -16,9 +18,9 @@ FactoryBot.define do
     sale_period { '2003-01-11' }
     transfer_period { '2004-01-11' }
     speed_satisfaction { 5 }
-    assessed_price { 10000 }
-    begin_sale_price { 20000 }
-    final_sale_price { 30000 }
+    assessed_price { 10_000 }
+    begin_sale_price { 20_000 }
+    final_sale_price { 30_000 }
     sale_price_satisfaction { 1 }
     agency_type { 'sennin' }
     title { 'タイトル' }
