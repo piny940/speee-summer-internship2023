@@ -121,12 +121,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_075915) do
     t.text "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
     t.text "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
     t.text "complaint", null: false, comment: "不動産会社に改善してほしい点"
-    t.string "concerns", null: false, comment: "売却時に不安だったこと"
-    t.string "decision_factor", null: false, comment: "この会社に決めた理由"
-    t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度"
-    t.text "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
-    t.text "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
-    t.text "complaint", null: false, comment: "不動産会社に改善してほしい点"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "discounted", default: false, null: false, comment: "値下げしたかどうか"
