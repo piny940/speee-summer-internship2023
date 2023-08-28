@@ -15,16 +15,6 @@ class Branch < ApplicationRecord
     sale_reviews.average(:service_satisfaction)
   end
 
-  # 売却スコアとスコアグラフの平均計算
-  def average_sale_price_satisfaction
-    sale_reviews.average(:sale_price_satisfaction)
-  end
-
-  # 売却スコアとスコアグラフの平均計算
-  def average_speed_satisfaction
-    sale_reviews.average(:speed_satisfaction)
-  end
-
   # 売却スコアの平均計算
   def average_sale_score
     (average_service_satisfaction + average_sale_price_satisfaction + average_speed_satisfaction) / 3.0
@@ -68,5 +58,17 @@ class Branch < ApplicationRecord
       # 100行ごとに出力
       Logger.new($stdout).debug "Line #{idx} OK" if (idx % 100).zero?
     end
+  end
+
+  private
+
+  # 売却スコアとスコアグラフの平均計算
+  def average_sale_price_satisfaction
+    sale_reviews.average(:sale_price_satisfaction)
+  end
+
+  # 売却スコアとスコアグラフの平均計算
+  def average_speed_satisfaction
+    sale_reviews.average(:speed_satisfaction)
   end
 end
