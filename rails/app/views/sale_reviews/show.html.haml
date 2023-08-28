@@ -34,15 +34,15 @@
         %tr
           %th.p-4 査定依頼時期 / 価格
           %td.p-4= year_month_description(@sale_review.assessment_request_period)
-          %td.p-4= @sale_review.assessed_price # TODO さとしょーが作ったhelperを使う
+          %td.p-4= format_price(@sale_review.assessed_price)
         %tr
           %th.p-4 売出時期 / 価格
           %td.p-4= year_month_description(@sale_review.begin_sale_period)
-          %td.p-4= @sale_review.begin_sale_price # TODO さとしょーが作ったhelperを使う
+          %td.p-4= format_price(@sale_review.begin_sale_price)
         %tr
           %th.p-4 売却時期 / 価格
           %td.p-4= year_month_description(@sale_review.sale_period)
-          %td.p-4= @sale_review.final_sale_price # TODO さとしょーが作ったhelperを使う
+          %td.p-4= format_price(@sale_review.final_sale_price)
         %tr
           %th.p-4 引き渡し時期
           %td.p-4= year_month_description(@sale_review.transfer_period)
