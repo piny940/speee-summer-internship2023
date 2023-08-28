@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Users' do
+RSpec.describe 'Branches' do
   let(:branch) do
     branch = create(:branch)
     create(:sale_review, branch_id: branch.id)
