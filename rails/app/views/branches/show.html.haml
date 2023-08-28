@@ -1,5 +1,5 @@
 .branch-wrapper
-  %h1.text-center #{@branch.company.name} #{@branch.name}
+  %h1#company#branch.text-center #{@branch.company.name} #{@branch.name}
   .row.mt-5.pb-5
     .col-6
       %h2.h3 #{@branch.catchphrase}
@@ -16,7 +16,7 @@
         グラフ
       %p.w-75.d-flex.justify-content-center
         売却スコア
-        %div #{number_with_precision(@branch.average_sale_score, precision: 1)}
+        .average-sale-score #{number_with_precision(@branch.average_sale_score, precision: 1)}
 
     .col
       .fw-bold.mb-3 #{@branch.company.name}について
