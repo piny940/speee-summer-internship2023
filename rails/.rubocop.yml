@@ -41,3 +41,6 @@ RSpec/NestedGroups:
 
 RSpec/MultipleMemoizedHelpers:
   Max: 20
+
+FactoryBot/AssociationStyle:
+  EnforcedStyle: explicit
