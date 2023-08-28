@@ -18,10 +18,12 @@ RSpec.describe 'Homes' do
   describe '/' do
     it '全ての都道府県の全ての市区町村が表示される' do
       visit root_path
-      expect(all('.prefecture').count).to eq Prefecture.count
+      expect(all('.prefecture').count).to eq PREFECTURES_COUNT
+      expect(all('.prefecture h3.card-title')[0]).to have_content Prefecture.first.name
       
-      within('.prefecture') do
+      within(all('.prefecture')[0]) do
         expect(all('.city').count).to eq CITIES_COUNT
+        expect(all('.city a')[0]).to have_content Prefecture.first.cities.first.name
       end
     end
   end
