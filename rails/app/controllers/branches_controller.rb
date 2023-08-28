@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 class BranchesController < ApplicationController
   def show
     @branch = Branch.find(params[:id])
-    @sale_reviews = SaleReview.where(branch_id: @branch.id).page(params[:page])
-    @debug_placeholder = "（変数未登録）"
+    @sale_reviews = @branch.sale_reviews.page(params[:page])
   end
 end
-
