@@ -19,15 +19,7 @@
         %div #{number_with_precision(@branch.average_sale_score, precision: 1)}
 
     .col
-      .fw-bold.mb-3 #{@branch.company.name}について
-      %ul.list-unstyled
-        %li 企業名：#{@branch.company.name}
-        %li 郵便番号：#{@branch.post_number}
-        %li 住所：#{@branch.city.prefecture.name}#{@branch.city.name}#{@branch.address}
-        %li 電話番号：#{@branch.phone}
-        %li FAX：#{@branch.fax_number}
-        %li 営業時間：#{@branch.business_hours}
-        %li 定休日：#{@branch.regular_holiday}
+      = render 'branches/description', branch: @branch
 
   .row.mt-5
     .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.average_service_satisfaction}）
