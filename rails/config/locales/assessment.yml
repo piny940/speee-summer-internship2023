@@ -17,7 +17,14 @@ ja:
         property_floor_area: 延床面積
         property_room_plan: 間取り
         property_constructed_year: 竣工年
-
+      assessment_user:
+        first_name: 名
+        last_name: 姓
+        first_name_kana: 名フリガナ
+        last_name_kana: 姓フリガナ
+        email: メールアドレス
+        tel: 電話番号
+        assessments: 査定依頼
   enums:
     assessment:
       property_type:
