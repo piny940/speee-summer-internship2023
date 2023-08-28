@@ -13,7 +13,7 @@
   .row.mt-5.pb-5
     .col.text-center
       .w-75.h-75.border.border-5.d-flex.align-items-center.justify-content-center
-        %canvas#myChart 
+        %canvas#myChart
       %p.w-75.d-flex.justify-content-center
         売却スコア
         %div #{number_with_precision(@branch.average_sale_score, precision: 1)}
@@ -46,24 +46,37 @@
     = link_to '#', class: "btn text-center w-auto btn--link" do
       査定依頼をする
 
+%script{src: "https://cdn.jsdelivr.net/npm/chart.js"}
+
 :javascript
-  $(document).on('turbolinks:load', function() {
-    const ctx = document.getElementById("myChart");
-    const  myChart = new Chart(ctax, {
-      type: 'radar',
-      data: {
-        labels: ["Japanese", "Mathematics", "English", "Social studies", "Science"],
-        datasets: [{
-          label: 'A_kun',
-          backgroundColor: "rgba(0,0,80,0.4)",
-          borderColor: "rgba(0,0,80,1)",
-          data: [80, 90, 60, 70, 100, 70]
-        }, {
-          label: 'B_kun',
-          backgroundColor: "rgba(0,255,0,0.4)",
-          borderColor: "rgba(0,255,0,1)",
-          data: [90, 75, 80, 65, 80, 70]
-        }]
-      }
-    });
-  }
+  const ctx = document.getElementById("myChart");
+  const  myChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['対応満足', '売却スピード', '売却価格'],  // ラベル名: ワイヤーフレームに記載されている
+      datasets: [{
+        backgroundColor: "rgba(51,255,51,0.5)",
+        borderColor: "rgba(51,255,51,1)",
+        pointBackgroundColor: "rgba(51,255,51,1)",
+        pointBorderColor: "#fff",
+        data: [3.5, 4.5, 5]
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        }
+      },
+      scales: {
+        r: {
+            angleLines: {
+                display: false
+            },
+            suggestedMin: 0,
+            suggestedMax: 5
+          }
+        }
+    }
+  });
