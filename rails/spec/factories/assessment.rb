@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :valid_assessment, class: Assessment do
+  factory :valid_assessment, class: 'Assessment' do
     association :assessment_user, factory: :valid_assessment_user
     association :branch
     association :city

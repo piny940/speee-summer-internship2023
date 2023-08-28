@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-
-  factory :valid_assessment_user, class: AssessmentUser do
-
+  factory :valid_assessment_user, class: 'AssessmentUser' do
     first_name { '太郎' }
     last_name { '田中' }
     first_name_kana { 'タロウ' }
@@ -11,7 +11,7 @@ FactoryBot.define do
   end
 
   # factory :invalid_assessment_user, class: AssessmentUser do
-    
+
   #   # 名前の文字数が多すぎる(31文字超)
   #   first_name { "太郎#{'a'*20}" }
   #   last_name { "田中#{'a'*8}" }
