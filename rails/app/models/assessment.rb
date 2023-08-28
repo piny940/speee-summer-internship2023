@@ -23,11 +23,6 @@ class Assessment < ApplicationRecord
     validates :property_floor_area
   end
 
-  validates :property_type, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3 }
-  validates :property_building_area_unit,
-            numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 2 }
-  validates :property_room_plan,
-            numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 13 }
   validates :property_constructed_year,
             numericality: { only_integer: true, greater_than_or_equal_to: 1925, less_than_or_equal_to: 2016 }
 
