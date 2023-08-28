@@ -24,16 +24,16 @@ RSpec.describe 'Users' do
     branch
   end
 
-  describe '平均値の計算' do
-    context '全ての口コミの service_stisfaction を平均する' do
-      it '(4 + 4 + 3 + 3) / 4.0 = 3.5' do
+  describe '平均値の表示' do
+    context '店舗に紐づく口コミの体験満足度' do
+      it '表示される' do
         visit branch_path branch
         expect(page).to have_content '平均評価★3.5'
       end
     end
 
-    context '３種類の評価値について、全ての口コミの平均値を計算し、その値を計算する' do
-      it '(3.5 + 2.5 + 1.5) / 3.0 = 2.5' do
+    context '店舗に紐づく口コミの売却に関する満足度' do
+      it '表示される' do
         visit branch_path branch
         expect(find('.average-sale-score')).to have_content '2.5'
       end
@@ -41,13 +41,13 @@ RSpec.describe 'Users' do
   end
 
   describe '必要な要素の表示' do
-    context '企業名と店舗名が正しく取得されて表示されているか' do
-      it '企業名' do
+    context '企業名と店舗名が正しく取得されて表示される' do
+      it '企業名が表示される' do
         visit branch_path branch
         expect(page).to have_content branch.company.name
       end
 
-      it '店舗名' do
+      it '店舗名が表示される' do
         visit branch_path branch
         expect(page).to have_content branch.name
       end
