@@ -9,7 +9,7 @@ class AssessmentsController < ApplicationController
   end
 
   def create
-    @assessment_user = AssessmentUser.new(assessment_user_params)
+    @assessment_user = AssessmentUser.find_or_initialize_by(assessment_user_params)
     @assessment = @assessment_user.assessments.new(assessment_params)
     @assessment.branch_id = params[:branch_id]
     @prefecture = Prefecture.find(params[:prefecture][:id])
