@@ -32,7 +32,8 @@ class AssessmentsController < ApplicationController
   end
 
   def assessment_params
-    params[:assessment_user].permit(:assessment).require(:assessment).permit(:branch_id,
+    p params[:assessment_user].permit(assessment: {})
+    params[:assessment_user].permit(assessment: {}).require(:assessment).permit(:branch_id,
                                                          :city_id,
                                                          :property_address,
                                                          :property_type,
