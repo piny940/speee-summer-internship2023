@@ -32,8 +32,7 @@ class AssessmentsController < ApplicationController
   end
 
   def assessment_params
-    p params[:assessment_user].permit(assessment: {})
-    params[:assessment_user].permit(assessment: {}).require(:assessment).permit(:branch_id,
+    params[:assessment_user].require(:assessment).permit(:branch_id,
                                                          :city_id,
                                                          :property_address,
                                                          :property_type,
@@ -47,14 +46,18 @@ class AssessmentsController < ApplicationController
   end
 
   def save_assessment_user_and_assessment
+    if params[:query_prefecture]
+      return render 'new', status: :multiple_choices
+    end
+
     if @assessment_user.valid? && @assessment.valid?
       ActiveRecord::Base.transaction do
         @assessment_user.save!
         @assessment.save!
       end
       redirect_to assessments_success_path
-    elsif params[:query_prefecture]
-      render 'new', status: :multiple_choices
+    else
+      render 'new', status: :bad_request
     end
   end
 end
