@@ -13,7 +13,7 @@
   .row.mt-5.pb-5
     .col.text-center
       .w-75.h-75.border.border-5.d-flex.align-items-center.justify-content-center
-        グラフ
+        %canvas#myChart 
       %p.w-75.d-flex.justify-content-center
         売却スコア
         %div #{number_with_precision(@branch.average_sale_score, precision: 1)}
@@ -45,3 +45,25 @@
   .row.pt-5.d-flex.justify-content-center
     = link_to '#', class: "btn text-center w-auto btn--link" do
       査定依頼をする
+
+:javascript
+  $(document).on('turbolinks:load', function() {
+    const ctx = document.getElementById("myChart");
+    const  myChart = new Chart(ctax, {
+      type: 'radar',
+      data: {
+        labels: ["Japanese", "Mathematics", "English", "Social studies", "Science"],
+        datasets: [{
+          label: 'A_kun',
+          backgroundColor: "rgba(0,0,80,0.4)",
+          borderColor: "rgba(0,0,80,1)",
+          data: [80, 90, 60, 70, 100, 70]
+        }, {
+          label: 'B_kun',
+          backgroundColor: "rgba(0,255,0,0.4)",
+          borderColor: "rgba(0,255,0,1)",
+          data: [90, 75, 80, 65, 80, 70]
+        }]
+      }
+    });
+  }
