@@ -46,9 +46,7 @@ class AssessmentsController < ApplicationController
   end
 
   def save_assessment_user_and_assessment
-    if params[:query_prefecture]
-      return render 'new', status: :multiple_choices
-    end
+    return render 'new', status: :multiple_choices if params[:query_prefecture]
 
     if @assessment_user.valid? && @assessment.valid?
       ActiveRecord::Base.transaction do
