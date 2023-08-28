@@ -1,4 +1,23 @@
 ja:
+  activerecord:
+    models:
+      assessment: 査定依頼
+      assessment_user: 査定依頼者
+    attributes:
+      assessment:
+        assessment_user_id: 査定依頼者
+        branch_id: 店舗
+        city_id: 市区町村
+        property_address: 物件住所
+        property_type: 物件種別
+        property_exclusive_area: 専有面積
+        property_land_area: 土地面積
+        property_building_area: 建物面積
+        property_building_area_unit: 建物面積の単位
+        property_floor_area: 延床面積
+        property_room_plan: 間取り
+        property_constructed_year: 竣工年
+
   enums:
     assessment:
       property_type:
