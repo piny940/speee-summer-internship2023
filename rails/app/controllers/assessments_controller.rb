@@ -11,8 +11,15 @@ class AssessmentsController < ApplicationController
   def create
     @assessment_user = AssessmentUser.new(assessment_user_params)
     @assessment = @assessment_user.assessments.new(assessment_params)
+    @@assessment.branch_id = params[:branch_id]
+    @prefecture = Prefecture.new(prefecture_params)
+    @cities = City.where(prefecture_id: @prefecture.id)
 
-    save_assessment_user_and_assessment
+    if params[:request_assessment]
+      save_assessment_user_and_assessment
+    elsif params[:query_prefecture]
+      render 'new', status: :multiple_choices
+    end
   end
 
   def succsess; end
@@ -48,6 +55,7 @@ class AssessmentsController < ApplicationController
         @assessment_user.save!
         @assessment.save!
       end
+      redirect_to assessments_success_path
     elsif params[:query_prefecture]
       render 'new', status: :multiple_choices
     end
