@@ -19,15 +19,7 @@
         .average-sale-score #{number_with_precision(@branch.average_sale_score, precision: 1)}
 
     .col
-      .fw-bold.mb-3 #{@branch.company.name}について
-      %ul.list-unstyled
-        %li 企業名：#{@branch.company.name}
-        %li 郵便番号：#{@branch.post_number}
-        %li 住所：#{@branch.city.prefecture.name}#{@branch.city.name}#{@branch.address}
-        %li 電話番号：#{@branch.phone}
-        %li FAX：#{@branch.fax_number}
-        %li 営業時間：#{@branch.business_hours}
-        %li 定休日：#{@branch.regular_holiday}
+      = render 'branches/description', branch: @branch
 
   .row.mt-5
     .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.average_service_satisfaction}）
@@ -38,10 +30,10 @@
           .card-body
             .card-title #{review.title}：★#{review.service_satisfaction}
             .card-text.mt-2 #{review.service_satisfaction_reason}
-            .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{format_price review.final_sale_price}（#{review.city.prefecture.name}#{review.city.name}・#{review.sale_period.strftime("%Y年%m月")}に売却）
+            .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{format_price review.final_sale_price}（#{review.city.prefecture.name}#{review.city.name}・#{year_month_description(review.sale_period)}に売却）
 
 
   %div=paginate @sale_reviews
-  .row.pt-5.d-flex.justify-content-center
-    = link_to '#', class: "btn text-center w-auto btn--link" do
+  .d-flex.justify-content-center
+    = link_to new_branch_assessment_path(@branch), class: "btn btn-blue text-center w-auto btn--link" do
       査定依頼をする

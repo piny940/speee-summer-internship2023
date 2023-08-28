@@ -1,0 +1,56 @@
+%h1.text-center
+  = @sale_review.title
+
+%ul.list-unstyled.property-info.mt-5
+  %li
+    売却した不動産会社名 :
+    = @sale_review.branch.company.name
+    = @sale_review.branch.name
+  %li
+    住所 :
+    = @sale_review.city.prefecture.name
+    = @sale_review.city.name
+  %li
+    売却の理由 :
+    = @sale_review.sale_reason_i18n
+  %li
+    売却経験 : 今回の売却が#{@sale_review.previous_experience_i18n}
+
+.mt-5
+  = render 'sale_reviews/description', title: '売却時に不安だったこと', content: @sale_review.concerns
+  = render 'sale_reviews/description', title: 'この会社に決めた決め手', content: @sale_review.decision_factor
+  = render 'sale_reviews/description', title: service_satisfaction_with_star(@sale_review.service_satisfaction), content: @sale_review.decision_factor
+  = render 'sale_reviews/description', title: '今後売却する人へのアドバイス', content: @sale_review.advice_for_next
+  = render 'sale_reviews/description', title: '不動産会社に改善してほしい点', content: @sale_review.complaint
+
+  .description.mb-5
+    .fw-bold.mb-2 売却時期と価格について
+    %table.table.border
+      %tbody
+        %tr
+          %th.p-4 売却検討
+          %td.p-4= year_month_description(@sale_review.begin_consideration_period)
+          %td.p-4 -
+        %tr
+          %th.p-4 査定依頼時期 / 価格
+          %td.p-4= year_month_description(@sale_review.assessment_request_period)
+          %td.p-4= format_price(@sale_review.assessed_price)
+        %tr
+          %th.p-4 売出時期 / 価格
+          %td.p-4= year_month_description(@sale_review.begin_sale_period)
+          %td.p-4= format_price(@sale_review.begin_sale_price)
+        %tr
+          %th.p-4 売却時期 / 価格
+          %td.p-4= year_month_description(@sale_review.sale_period)
+          %td.p-4= format_price(@sale_review.final_sale_price)
+        %tr
+          %th.p-4 引き渡し時期
+          %td.p-4= year_month_description(@sale_review.transfer_period)
+          %td.p-4 -
+
+.mt-5
+  = render 'branches/description', branch: @sale_review.branch
+
+.mt-5.pb-5.d-flex.justify-content-center
+  = link_to new_branch_assessment_path(@sale_review.branch), class: "btn btn-blue text-center w-auto btn--link" do
+    査定依頼をする
