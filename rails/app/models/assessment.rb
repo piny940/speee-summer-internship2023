@@ -24,7 +24,7 @@ class Assessment < ApplicationRecord
   end
 
   validates :property_constructed_year,
-            numericality: { only_integer: true, greater_than_or_equal_to: 1925, less_than_or_equal_to: 2016 }
+            numericality: { allow_blank: true, only_integer: true, greater_than_or_equal_to: 1925, less_than_or_equal_to: 2016 }
 
   enum property_type: {
     apartment: 1,

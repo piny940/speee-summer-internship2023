@@ -15,7 +15,7 @@ class AssessmentUser < ApplicationRecord
 
   # 氏名フリガナの存在とカタカナであるかどうかをチェック
   %i[last_name_kana first_name_kana].each do |name_kana|
-    validates name_kana, presence: true, format: { with: KATAKANA_REGEXP }
+    validates name_kana, presence: true, format: { with: KATAKANA_REGEXP, allow_blank: true }
   end
 
   # 氏名の存在をチェック
@@ -24,8 +24,8 @@ class AssessmentUser < ApplicationRecord
   end
 
   # 電話番号の存在と文字数、0で始まるかをチェック
-  validates :tel, presence: true, length: { minimum: 10, maximum: 11 },
-                  format: { with: TEL_REGEXP }
+  validates :tel, presence: true, length: { minimum: 10, maximum: 11, allow_blank: true },
+                  format: { with: TEL_REGEXP, allow_blank: true }
 
   # 氏名と氏名振り仮名がそれぞれ指定文字数を超えていないかチェック
   validate :validate_name_length
@@ -33,7 +33,7 @@ class AssessmentUser < ApplicationRecord
 
   # メールアドレスの存在と文字数、フォーマットをチェック
   validates :email, presence: true, length: { maximum: 100 },
-                    format: { with: EMAIL_REGEXP }
+                    format: { with: EMAIL_REGEXP, allow_blank: true }
 
   private
 
