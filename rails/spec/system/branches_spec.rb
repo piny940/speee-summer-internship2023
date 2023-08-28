@@ -47,7 +47,7 @@ RSpec.describe 'Users' do
         expect(page).to have_content branch.company.name
       end
 
-      it '店舗名 =  ベテすま店１' do
+      it '店舗名 = ベテすま店１' do
         visit branch_path branch
         expect(page).to have_content branch.name
       end

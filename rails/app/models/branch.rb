@@ -16,11 +16,6 @@ class Branch < ApplicationRecord
   end
 
   # /branches/:id における売却スコアとスコアグラフの平均計算
-  def average_service_satisfaction
-    sale_reviews.average(:service_satisfaction)
-  end
-
-  # /branches/:id における売却スコアとスコアグラフの平均計算
   def average_sale_price_satisfaction
     sale_reviews.average(:sale_price_satisfaction)
   end
