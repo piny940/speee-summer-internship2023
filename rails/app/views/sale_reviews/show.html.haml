@@ -48,6 +48,9 @@
           %td.p-4= year_month_description(@sale_review.transfer_period)
           %td.p-4 -
 
-.pt-5.pb-5.d-flex.justify-content-center
+.mt-5
+  = render 'branches/description', branch: @sale_review.branch
+
+.mt-5.pb-5.d-flex.justify-content-center
   = link_to new_branch_assessment_path(@sale_review.branch), class: "btn btn-blue text-center w-auto btn--link" do
     査定依頼をする
