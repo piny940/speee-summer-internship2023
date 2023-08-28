@@ -37,10 +37,6 @@
       .col-4.text-center= f.submit "市区町村を絞り込む", name: 'query_prefecture', class: "btn btn-secondary"
 
     .row.mt-3
-      .col-4.text-center= assessment_f.label :branch_id, "支店番号"
-      .col-8= assessment_f.number_field :branch_id, value: params[:branch_id], class: 'form-control'
-
-    .row.mt-3
       .col-4.text-center= assessment_f.label :city_id, "市区町村"
       .col-8.text-center= assessment_f.collection_select :city_id, @cities, :id, :name, {}, class: 'form-select'
 
