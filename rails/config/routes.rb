@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/assessments/success', to: 'assessments#success'
 
   resources :branches, only: %i[show] do
-    resource :assessments, only: %i[new create]
+    resources :assessments, only: %i[new create]
   end
   resources :sale_reviews, only: %i[show]
 end

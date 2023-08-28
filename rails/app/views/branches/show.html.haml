@@ -42,6 +42,6 @@
 
 
   %div=paginate @sale_reviews
-  .row.pt-5.d-flex.justify-content-center
-    = link_to '#', class: "btn text-center w-auto btn--link" do
+  .d-flex.justify-content-center
+    = link_to new_branch_assessment_path(@branch), class: "btn btn-blue text-center w-auto btn--link" do
       査定依頼をする

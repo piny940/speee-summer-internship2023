@@ -27,15 +27,15 @@ a {
 // ==================================
 .branch-wrapper {
   padding-bottom: 10em;
-  
-  .btn {
-    padding: 1em 3em;
-    color: #ffffff;
-    background: #3182CE;
-    transition: 0.2s;
+}
 
-    &:hover {
-      background: #205d96;
-    }
+.btn.btn-blue {
+  padding: 1em 3em;
+  color: #ffffff;
+  background: #3182CE;
+  transition: 0.2s;
+
+  &:hover {
+    background: #205d96;
   }
 }
