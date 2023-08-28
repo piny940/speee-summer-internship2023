@@ -1,0 +1,24 @@
+ja:
+  enums:
+    assessment:
+      property_type:
+        apartment: 分譲マンション
+        house: 一戸建て
+        land: 土地
+      property_building_area_unit:
+        square_meter: 平方メートル
+        tsubo: 坪
+      property_room_plan:
+        one_room: 1R(ワンルーム)
+        one_k_dk: 1K / 1DK
+        one_lk_ldk: 1LK / 1LDK
+        two_k_dk: 2K / 2DK
+        two_lk_ldk: 2LK / 2LDK
+        three_k_dk: 3K / 3LDK
+        three_lk_ldk: 3LK / 3LDK
+        four_k_dk: 4K / 4DK
+        foour_lk_ldk: 4LK / 4LDK
+        five_k_dk: 5K / 5DK
+        five_lk_ldk: 5LK / 5LDK
+        six_k_dk: 6K / 6DK
+        six_lk_ldk_or_more: 6LK / 6LDK以上
