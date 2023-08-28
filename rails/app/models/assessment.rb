@@ -30,7 +30,7 @@ class Assessment < ApplicationRecord
             numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 13 }
   validates :property_constructed_year,
             numericality: { only_integer: true, greater_than_or_equal_to: 1925, less_than_or_equal_to: 2016 }
-  
+
   enum property_type: {
     apartment: 1,
     house: 2,
@@ -41,7 +41,7 @@ class Assessment < ApplicationRecord
     square_meter: 1,
     tsubo: 2
   }, _prefix: true
-  
+
   enum property_room_plan: {
     one_room: 1,
     one_k_dk: 2,
