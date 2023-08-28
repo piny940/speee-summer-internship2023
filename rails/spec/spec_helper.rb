@@ -94,5 +94,14 @@ RSpec.configure do |config|
 
   config.before(:each, type: :system) do
     driven_by(:rack_test)
+    DatabaseCleaner.start
+  end
+
+  config.after(:each, type: :system) do
+    DatabaseCleaner.clean
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
   end
 end
