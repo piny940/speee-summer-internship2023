@@ -49,6 +49,7 @@ RSpec.describe "Assessments", type: :system do
   end
   
   describe '査定依頼送信の確認' do
+
     let!(:assessment) { FactoryBot.create(:valid_assessment) }
 
     it '正しい入力内容で査定依頼を行った場合' do  
@@ -60,7 +61,8 @@ RSpec.describe "Assessments", type: :system do
       puts find('#prefecture_id')['innerHTML']
       fill_in 'メールアドレス', with: assessment.assessment_user.email
       fill_in '電話番号', with: assessment.assessment_user.tel
-      select '北海道', from: 'prefecture_id'
+      p Prefecture.all
+      select assessment.city.prefecture.name, from: 'prefecture_id'
       find('input[name="query_prefecture"]').click
       within '#assessment_user_assessment_city_id' do
         find("option[value=#{assessment.city.id}]").click
