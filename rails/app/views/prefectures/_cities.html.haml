@@ -5,4 +5,4 @@
     .card-text 
       %ul.cities.list-unstyled.d-flex.flex-wrap
         - prefecture.cities.each do |city|
-          %li.px-2.py-1.city= link_to city.name, root_path
+          %li.px-2.py-1.city= link_to city.name, city_path(city)

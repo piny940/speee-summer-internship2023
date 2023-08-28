@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'homes#show'
   get '/assessments/success', to: 'assessments#success'
 
+  resources :cities, only: %i[show]
   resources :branches, only: %i[show] do
     resources :assessments, only: %i[new create]
   end
