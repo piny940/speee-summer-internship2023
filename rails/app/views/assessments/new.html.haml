@@ -31,13 +31,11 @@
       .col-4.text-center=f.label :tel, "電話番号"
       .col-8=f.text_field :tel, class: 'form-control'
 
-    =f.fields_for :prefecture, @prefecture do |prefecture_f|
-      .row.mt-3
-        .col-4.text-center=prefecture_f.label :id, "都道府県"
-        .col-4.text-center=prefecture_f.collection_select  :id, Prefecture.all, :id, :name, {}, class: 'form-select'
-        .col-4.text-center=f.submit "市区町村を絞り込む", name: 'query_prefecture', class: "btn btn-secondary"
-
     =f.fields_for :assessment, @assessment do |assessment_f|
+      .row.mt-3
+        .col-4.text-center 都道府県
+        .col-4.text-center=collection_select :prefecture, :id, Prefecture.all, :id, :name, {}, class: 'form-select'
+        .col-4.text-center=f.submit "市区町村を絞り込む", name: 'query_prefecture', class: "btn btn-secondary"
 
       -# .row.mt-3
       -#   .col-4.text-center=assessment_f.label :branch_id, "支店番号"

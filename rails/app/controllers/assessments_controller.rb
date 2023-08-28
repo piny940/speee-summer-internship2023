@@ -11,8 +11,8 @@ class AssessmentsController < ApplicationController
   def create
     @assessment_user = AssessmentUser.new(assessment_user_params)
     @assessment = @assessment_user.assessments.new(assessment_params)
-    @@assessment.branch_id = params[:branch_id]
-    @prefecture = Prefecture.new(prefecture_params)
+    @assessment.branch_id = params[:branch_id]
+    @prefecture = Prefecture.find(params[:prefecture][:id])
     @cities = City.where(prefecture_id: @prefecture.id)
 
     if params[:request_assessment]
@@ -32,7 +32,7 @@ class AssessmentsController < ApplicationController
   end
 
   def assessment_params
-    params[:assessment_user].require(:assessment).permit(:branch_id,
+    params[:assessment_user].permit(:assessment).require(:assessment).permit(:branch_id,
                                                          :city_id,
                                                          :property_address,
                                                          :property_type,
@@ -43,10 +43,6 @@ class AssessmentsController < ApplicationController
                                                          :property_floor_area,
                                                          :property_room_plan,
                                                          :property_constructed_year)
-  end
-
-  def prefecture_params
-    params[:assessment_user].require(:prefecture).permit(:id)
   end
 
   def save_assessment_user_and_assessment
