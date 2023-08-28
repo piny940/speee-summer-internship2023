@@ -42,12 +42,12 @@ RSpec.describe 'Users' do
 
   describe '必要な要素の表示' do
     context '企業名と店舗名が正しく取得されて表示されているか' do
-      it '企業名 = ベテすま不動産１' do
+      it '企業名' do
         visit branch_path branch
         expect(page).to have_content branch.company.name
       end
 
-      it '店舗名 = ベテすま店１' do
+      it '店舗名' do
         visit branch_path branch
         expect(page).to have_content branch.name
       end
