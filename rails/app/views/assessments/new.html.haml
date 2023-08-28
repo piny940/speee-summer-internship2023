@@ -51,7 +51,7 @@
 
       .row.mt-3
         .col-4.text-center=assessment_f.label :property_type, "物件種別"
-        .col-8.text-center=assessment_f.select :property_type, [["分譲マンション", 1], ["一戸建て", 2], ["土地", 3]],{}, class: 'form-select'
+        .col-8.text-center=assessment_f.select :property_type, Assessment.property_types_i18n.invert, {}, class: 'form-select'
 
       .row.mt-3
         .col-4.text-center=assessment_f.label :property_exclusive_area, "専有面積"
@@ -67,7 +67,7 @@
 
       .row.mt-3
         .col-4.text-center=assessment_f.label :property_building_area_unit, "建物面積単位"
-        .col-8.text-center=assessment_f.select :property_building_area_unit, [["平方メートル", 1], ["坪", 2]],{}, class: 'form-select'
+        .col-8.text-center=assessment_f.select :property_building_area_unit, Assessment.property_building_area_units_i18n.invert, {}, class: 'form-select'
 
       .row.mt-3
         .col-4.text-center=assessment_f.label :property_floor_area, "延床面積"
@@ -75,7 +75,7 @@
 
       .row.mt-3
         .col-4.text-center=assessment_f.label :property_room_plan, "間取り"
-        .col-8.text-center=assessment_f.select :property_room_plan, [['1R(ワンルーム)', 1], ['1K / 1DK', 2], ['1LK / 1LDK', 3], ['2K / 2DK', 4], ['2LK / 2LDK', 5], ['3K / 3DK', 6], ['3LK / 3LDK', 7], ['4K / 4DK', 8], ['4LK / 4LDK', 9], ['5K / 5DK', 10], ['5LK / 5LDK', 11], ['6K / 6DK', 12], ['6LK / 6LDK以上', 13]],{}, class: 'form-select'
+        .col-8.text-center=assessment_f.select :property_room_plan, Assessment.property_room_plans_i18n.invert, {}, class: 'form-select'
 
       .row.mt-3
         .col-4.text-center=assessment_f.label :property_constructed_year, "竣工年"
