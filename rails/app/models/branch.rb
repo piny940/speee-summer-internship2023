@@ -23,6 +23,8 @@ class Branch < ApplicationRecord
   end
 
   def avg_satisfactions
+    return nil if avg_service_satisfaction.nil? || avg_sale_price_satisfaction.nil? || avg_speed_satisfaction.nil?
+  
     (avg_service_satisfaction + avg_sale_price_satisfaction + avg_speed_satisfaction) / 3.0
   end
 
