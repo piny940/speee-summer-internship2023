@@ -1,4 +1,6 @@
 - content_for(:title, "査定依頼フォーム")
+- content_for(:breadcrumbs) do
+  = render 'application/breadcrumbs', args: { branch: @branch }
 
 %h1.page_title.text-center
   査定依頼フォーム

@@ -1,3 +1,6 @@
+- content_for(:breadcrumbs) do
+  = render 'application/breadcrumbs', args: { branch: @branch }
+
 - if @branch.sale_reviews.empty?
   - content_for(:noindex, true)
 

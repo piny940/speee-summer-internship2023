@@ -1,4 +1,5 @@
-- breadcrumbs = breadcrumbs(controller_path, controller.action_name)
+- args ||= {}
+- breadcrumbs = breadcrumbs(controller_path, controller.action_name, args)
 - if breadcrumbs.present?
   %nav{"aria-label" => "breadcrumb", style: '--bs-breadcrumb-divider: \'>\';' }
     %ol.breadcrumb

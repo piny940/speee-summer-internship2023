@@ -25,5 +25,5 @@
         .alert.alert-info= notice
       - if alert
         .alert.alert-danger= alert
-      = render 'application/breadcrumbs'
+      = yield(:breadcrumbs)
       = yield
