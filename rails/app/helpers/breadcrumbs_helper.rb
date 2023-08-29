@@ -27,7 +27,7 @@ module BreadcrumbsHelper
     when 'assessments#new'
       { name: '査定依頼フォーム', url: new_branch_assessment_path(@branch)}
     when 'assessments#success'
-      { name: '査定依頼完了', url: branch_assessments_success_path(@branch)}
+      { name: '査定依頼完了', url: success_branch_assessments_path(@branch)}
     else
       raise "breadcrumbs_url に #{name} が定義されていません！"
     end
