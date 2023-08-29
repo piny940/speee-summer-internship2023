@@ -47,6 +47,7 @@ RSpec.describe 'Assessments' do
 
   describe '査定依頼送信の確認' do
     before { stub_miniul(branch, city) }
+
     let(:branch) { create(:branch) }
     let(:city) { create(:city) }
     let(:assessment) do
