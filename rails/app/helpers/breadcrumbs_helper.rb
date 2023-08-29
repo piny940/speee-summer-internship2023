@@ -11,8 +11,9 @@ module BreadcrumbsHelper
 
   def breadcrumbs_tree
     [
-      ['homes#show', 'branches#show', 'sale_reviews#show'],
-      ['homes#show', 'branches#show', 'assessments#new', 'assessments#success']
+      ['homes#show', 'cities#show'],
+      ['homes#show', 'cities#show', 'branches#show', 'sale_reviews#show'],
+      ['homes#show', 'cities#show', 'branches#show', 'assessments#new', 'assessments#success']
     ]
   end
 
@@ -20,6 +21,8 @@ module BreadcrumbsHelper
     case name
     when 'homes#show'
       { name: 'トップページ', url: root_path }
+    when 'cities#show'
+      { name: args[:city].prefecture_city_name, url: city_path(id: args[:city].id) }
     when 'branches#show'
       { name: "#{args[:branch].company.name} #{args[:branch].name}", url: branch_path(args[:branch]) }
     when 'sale_reviews#show'

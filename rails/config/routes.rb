@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     end
   end
   resources :sale_reviews, only: %i[show]
+  resources :cities, only: %i[show]
 end
