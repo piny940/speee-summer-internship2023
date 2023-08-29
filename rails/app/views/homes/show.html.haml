@@ -1,3 +1,6 @@
-- @prefectures.each do |prefecture|
-  .prefecture.mb-2
-    = render 'prefectures/cities', prefecture: prefecture
+%h1.text-center ベテランすまい
+
+.prefectures.mt-5
+  - @prefectures.each do |prefecture|
+    .prefecture.mb-2
+      = render 'prefectures/cities', prefecture: prefecture
