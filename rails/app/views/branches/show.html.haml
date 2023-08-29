@@ -1,5 +1,5 @@
 - content_for(:breadcrumbs) do
-  = render 'application/breadcrumbs', args: { branch: @branch }
+  = render 'application/breadcrumbs', args: { city: @branch.city, branch: @branch }
 - content_for(:title, @branch.company_branch_name)
 - content_for(:description, "#{@branch.company_branch_name}の査定依頼や売却申し込みをした方々の率直な声をご覧いただけるページです。信頼性の高い不動産会社を選ぶための貴重な情報源として、#{@branch.company_branch_name}の評価や口コミをご確認ください。過去の取引経験から得られるリアルな意見が、安心して取引する際の参考になることでしょう。お客様の満足度や対応力、プロフェッショナリズムに関する評判など、様々な観点から#{@branch.company_branch_name}を評価している声をお届けします。")
 - content_for(:meta_keywords, @branch.company_branch_name)
