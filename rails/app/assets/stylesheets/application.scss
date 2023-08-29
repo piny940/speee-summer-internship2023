@@ -43,16 +43,16 @@ a {
       background: #205d96;
     }
   }
-
-  .canvas-wrapper {
-    height: 80%;
+  
+  .graphics {
+    .canvas-wrapper {
+      height: 80%;
+    }
+    .star {
+      color: #eadf6e;
+      font-size: 1.7em;
+    }
   }
-
-  .star {
-    color: #dee262;
-    font-size: 1.7em;
-  }
-
   .branch-info {
     margin-top: 5rem;
   }
