@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AssessmentsController < ApplicationController
-  before_action :set_branch
+  before_action :set_branch, only: %i[new create success]
 
   def new
     @assessment_user = AssessmentUser.new
