@@ -10,16 +10,14 @@ class Branch < ApplicationRecord
   has_many :sale_reviews, dependent: :destroy
   has_many :raw_sale_reviews, dependent: :destroy
 
+  # 対応満足度の平均計算
   def average_service_satisfaction
     sale_reviews.average(:service_satisfaction)
   end
 
+  # 売却スコアの平均計算
   def average_sale_score
-    avg_service_satisfaction = sale_reviews.average(:service_satisfaction)
-    avg_sale_price_satisfaction = sale_reviews.average(:sale_price_satisfaction)
-    avg_speed_satisfaction = sale_reviews.average(:speed_satisfaction)
-
-    (avg_service_satisfaction + avg_sale_price_satisfaction + avg_speed_satisfaction) / 3.0
+    (average_service_satisfaction + average_sale_price_satisfaction + average_speed_satisfaction) / 3.0
   end
 
   def self.create_branches_from_csv(path)
@@ -64,15 +62,13 @@ class Branch < ApplicationRecord
 
   private
 
-  def avg_service_satisfaction
-    sale_reviews.average(:service_satisfaction)
-  end
-
-  def avg_sale_price_satisfaction
+  # 売却スコアとスコアグラフの平均計算
+  def average_sale_price_satisfaction
     sale_reviews.average(:sale_price_satisfaction)
   end
 
-  def avge_speed_satisfaction
+  # 売却スコアとスコアグラフの平均計算
+  def average_speed_satisfaction
     sale_reviews.average(:speed_satisfaction)
   end
 end
