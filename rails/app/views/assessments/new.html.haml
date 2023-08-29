@@ -9,9 +9,9 @@
 %p.text-center
   査定可能なエリア:
   - if @branch.assessable_cities.length < 4
-    = @branch.assessable_cities.map{ |city| city.prefecture.name + city.name }.join(', ')
+    = @branch.assessable_cities.map(&:prefecture_city_name).join(', ')
   - else
-    = "#{@branch.assessable_cities[...3].map{ |city| city.prefecture.name + city.name }.join(', ')}...他"
+    = "#{@branch.assessable_cities[...3].map(&:prefecture_city_name).join(', ')}...他"
     
 
 = form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5', method: :post) do |f|
@@ -44,14 +44,8 @@
 
   = f.fields_for :assessment, @assessment do |assessment_f|
     .row.mt-3
-      .col-4.text-center 
-        %label{ for: 'prefecture_id' } 都道府県
-      .col-4.text-center= collection_select :prefecture, :id, Prefecture.all, :id, :name, {}, class: 'form-select'
-      .col-4.text-center= f.submit "市区町村を絞り込む", name: 'query_prefecture', class: "btn btn-secondary"
-
-    .row.mt-3
-      .col-4.text-center= assessment_f.label :city_id, "市区町村"
-      .col-8.text-center= assessment_f.collection_select :city_id, @cities, :id, :name, {}, class: 'form-select'
+      .col-4.text-center= assessment_f.label :city_id, "都道府県・市区町村"
+      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name, {}, class: 'form-select'
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_address, "物件住所（市区町村以下）"
@@ -82,4 +76,4 @@
       .col-8.text-center= assessment_f.number_field :property_constructed_year, class: 'form-control'
     
     .mt-4.d-flex.justify-content-center
-      = f.submit "査定依頼する", name: 'request_assessment', class: "btn btn-primary btn-lg btn--link"
+      = f.submit "査定依頼する", class: "btn btn-blue text-center w-auto btn--link"
