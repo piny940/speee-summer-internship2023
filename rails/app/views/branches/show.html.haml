@@ -32,21 +32,22 @@
     .col.branch-info
       = render 'branches/description', branch: @branch
 
-  .row.mt-5
-    .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.avg_service_satisfaction}）
-    
-    - @sale_reviews.each do |review|
-      = link_to sale_review_path(review), class: "review-card" do 
-        .card.mb-3
-          .card-body
-            .card-title #{review.title}：★#{review.service_satisfaction}
-            .card-text.mt-2 #{review.service_satisfaction_reason}
-            .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{format_price review.final_sale_price}（#{review.city.prefecture_city_name}・#{year_month_description(review.sale_period)}に売却）
+  =turbo_frame_tag "reviews_list" do
+    .row.mt-5
+      .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.avg_service_satisfaction}）
+      
+      - @sale_reviews.each do |review|
+        = link_to sale_review_path(review), class: "review-card" do 
+          .card.mb-3
+            .card-body
+              .card-title #{review.title}：★#{review.service_satisfaction}
+              .card-text.mt-2 #{review.service_satisfaction_reason}
+              .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{format_price review.final_sale_price}（#{review.city.prefecture_city_name}・#{year_month_description(review.sale_period)}に売却）
 
 
-  %div=paginate @sale_reviews
-  .row.pt-5.d-flex.justify-content-center
-    = link_to new_branch_assessment_path(@branch), class: "btn btn-blue text-center w-auto btn--link" do
-      査定依頼をする
+    %div=paginate @sale_reviews
+    .row.pt-5.d-flex.justify-content-center
+      = link_to new_branch_assessment_path(@branch), class: "btn btn-blue text-center w-auto btn--link" do
+        査定依頼をする
 
 %script{ src: "https://cdn.jsdelivr.net/npm/chart.js" }
