@@ -48,10 +48,10 @@ RSpec.describe 'Assessments' do
   describe '査定依頼送信の確認' do
     let(:branch) { create(:branch) }
     let(:city) { create(:city) }
-    let(:assessment) {
+    let(:assessment) do
       branch.assessable_cities << city
       build(:valid_assessment, branch_id: branch.id, city_id: city.id)
-    }
+    end
 
     it '正しい入力内容で査定依頼を行った場合' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       visit new_branch_assessment_path(branch_id: assessment.branch.id)
