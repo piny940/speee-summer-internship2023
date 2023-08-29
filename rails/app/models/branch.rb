@@ -10,15 +10,19 @@ class Branch < ApplicationRecord
   has_many :sale_reviews, dependent: :destroy
   has_many :raw_sale_reviews, dependent: :destroy
 
-  def average_service_satisfaction
+  def avg_service_satisfaction
     sale_reviews.average(:service_satisfaction)
   end
 
-  def average_sale_score
-    avg_service_satisfaction = sale_reviews.average(:service_satisfaction)
-    avg_sale_price_satisfaction = sale_reviews.average(:sale_price_satisfaction)
-    avg_speed_satisfaction = sale_reviews.average(:speed_satisfaction)
+  def avg_sale_price_satisfaction
+    sale_reviews.average(:sale_price_satisfaction)
+  end
 
+  def avg_speed_satisfaction
+    sale_reviews.average(:speed_satisfaction)
+  end
+
+  def average_satisfactions
     (avg_service_satisfaction + avg_sale_price_satisfaction + avg_speed_satisfaction) / 3.0
   end
 
@@ -60,19 +64,5 @@ class Branch < ApplicationRecord
       # 100行ごとに出力
       Logger.new($stdout).debug "Line #{idx} OK" if (idx % 100).zero?
     end
-  end
-
-  private
-
-  def avg_service_satisfaction
-    sale_reviews.average(:service_satisfaction)
-  end
-
-  def avg_sale_price_satisfaction
-    sale_reviews.average(:sale_price_satisfaction)
-  end
-
-  def avge_speed_satisfaction
-    sale_reviews.average(:speed_satisfaction)
   end
 end

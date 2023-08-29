@@ -10,13 +10,14 @@
 
   .row.mt-5.pb-5
     .col.text-center.position-relative.graphics
+      - sale_score = number_with_precision(@branch.average_satisfactions, precision: 1)
       .d-flex.align-items-center.justify-content-center.canvas-wrapper
         %canvas#myChart
-        %p.position-absolute.score-point 3.0
+        %p.position-absolute.score-point= sale_score
       %p.d-flex.justify-content-center.m-0
         %p.fw-bold.m-0 売却スコア
-        %div= render 'branches/display_stars', sale_score: @branch.average_sale_score, range: @score_range
-        %div= number_with_precision(@branch.average_sale_score, precision: 1)
+        %div= render 'branches/display_stars', sale_score: sale_score.to_i, range: @score_range
+        %div= sale_score
 
     .col.branch-info
       .fw-bold.mb-3 #{@branch.company.name}について
@@ -30,7 +31,7 @@
         %li 定休日：#{@branch.regular_holiday}
 
   .row.mt-5
-    .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.average_service_satisfaction}）
+    .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.avg_service_satisfaction}）
     
     - @sale_reviews.each do |review|
       = link_to root_path, class: "review-card" do 
