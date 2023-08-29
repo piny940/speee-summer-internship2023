@@ -26,6 +26,28 @@
     width: 75%;
     margin: 0 auto;  
   }
+
+    
+  .graphics {
+    .canvas-wrapper {
+      height: 80%;
+
+      .score-point {
+        // transform: translate(-40%, 25%);
+        transform: translate(-25%, 20%);
+        font-size: 2rem;
+        font-weight: bold;
+        color: rgba(68, 221, 221, 0.9);
+      }
+    }
+    .star {
+      color: #eadf6e;
+      font-size: 1.7em;
+    }
+  }
+  .branch-info {
+    margin-top: 5rem;
+  }
   
   .btn {
     padding: 1em 3em;
@@ -48,27 +70,6 @@
 
   &:hover {
     background: #205d96;
-  }
-  
-  .graphics {
-    .canvas-wrapper {
-      height: 80%;
-
-      .score-point {
-        // transform: translate(-40%, 25%);
-        transform: translate(-25%, 20%);
-        font-size: 2rem;
-        font-weight: bold;
-        color: rgba(68, 221, 221, 0.9);
-      }
-    }
-    .star {
-      color: #eadf6e;
-      font-size: 1.7em;
-    }
-  }
-  .branch-info {
-    margin-top: 5rem;
   }
 }
 
