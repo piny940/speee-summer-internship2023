@@ -7,11 +7,6 @@ class Assessment < ApplicationRecord
 
   with_options presence: true do
     validates :property_type
-    validates :property_exclusive_area
-    validates :property_land_area
-    validates :property_building_area
-    validates :property_building_area_unit
-    validates :property_floor_area
     validates :property_room_plan
     validates :property_constructed_year
   end
@@ -20,12 +15,14 @@ class Assessment < ApplicationRecord
     validates :property_exclusive_area
     validates :property_land_area
     validates :property_building_area
-    validates :property_floor_area
   end
 
   validates :property_constructed_year,
             numericality: { allow_blank: true, only_integer: true, greater_than_or_equal_to: 1925,
                             less_than_or_equal_to: 2016 }
+  validate :validate_property_exclusive_area
+  validate :validate_property_land_area
+  validate :validate_property_building_area
 
   enum property_type: {
     apartment: 1,
@@ -53,4 +50,19 @@ class Assessment < ApplicationRecord
     six_k_dk: 12,
     six_lk_ldk_or_more: 13
   }, _prefix: true
+
+  def validate_property_exclusive_area
+    return unless property_type == 'apartment' && property_exclusive_area.zero?
+    errors.add(:property_exclusive_area, 'を指定してください')
+  end
+
+  def validate_property_land_area
+    return unless %w[house land].include?(property_type) && property_land_area.zero?
+    errors.add(:property_land_area, 'を指定してください')
+  end
+
+  def validate_property_building_area
+    return unless property_type == 'house' && property_building_area.zero?
+    errors.add(:property_building_area, 'を指定してください')
+  end
 end
