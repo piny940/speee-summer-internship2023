@@ -9,15 +9,16 @@
       %img.img-fluid{ alt: "ロゴ画像", src: "#{@branch.logo_url}" }/
 
   .row.mt-5.pb-5
-    .col.text-center.position-relative#graphics{ data: { scores: { service: 1 }, { sale: 3 }, {  } } }
-      - sale_score = number_with_precision(@branch.average_satisfactions, precision: 1)
+    .col.text-center.position-relative.graphics
+      - sale_score = number_with_precision(@branch.avg_satisfactions, precision: 1)
       .d-flex.align-items-center.justify-content-center.canvas-wrapper
-        %canvas#branchRaderGraph
+        %canvas#branchRadarGraph{ data: { scores: @scores.to_json } }
         %p.position-absolute.score-point= sale_score
       %p.d-flex.justify-content-center.m-0
         %p.fw-bold.m-0 売却スコア
         %div= render 'branches/display_stars', sale_score: sale_score.to_i, range: @score_range
-        %div= sale_score
+        -# %div= sale_score
+        %div #{@branch.avg_satisfactions} | #{@branch.avg_service_satisfaction} #{@branch.avg_speed_satisfaction} #{@branch.avg_sale_price_satisfaction}
 
     .col.branch-info
       .fw-bold.mb-3 #{@branch.company.name}について

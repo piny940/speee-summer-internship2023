@@ -22,7 +22,7 @@ class Branch < ApplicationRecord
     sale_reviews.average(:speed_satisfaction)
   end
 
-  def average_satisfactions
+  def avg_satisfactions
     (avg_service_satisfaction + avg_sale_price_satisfaction + avg_speed_satisfaction) / 3.0
   end
 

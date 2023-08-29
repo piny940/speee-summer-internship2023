@@ -1,5 +1,13 @@
-const ctx = document.getElementById("branchRaderGraph");
-const  branchRaderGraph = new Chart(ctx, {
+const ctx = document.querySelector("#branchRadarGraph");
+const scoresObj = JSON.parse(ctx.getAttribute('data-scores'))
+let scores = [
+  // 並び順は表示ラベル名の並びに対応
+  scoresObj.service,
+  scoresObj.speed,
+  scoresObj.price
+].map((str) => Number(str))
+
+const  branchRadarGraph = new Chart(ctx, {
   type: 'radar',
   data: {
     labels: ['対応満足', '売却スピード', '売却価格'],  // ラベル名: ワイヤーフレームに記載されている
@@ -8,7 +16,7 @@ const  branchRaderGraph = new Chart(ctx, {
       borderColor: "rgba(106, 251, 251, 0.9)",
       pointBackgroundColor: "rgba(106, 251, 251, 1)",
       pointBorderColor: "#fff",
-      data: [3.5, 4.5, 5]
+      data: scores
     }]
   },
   options: {

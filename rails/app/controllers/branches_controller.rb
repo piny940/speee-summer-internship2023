@@ -5,6 +5,10 @@ class BranchesController < ApplicationController
     @branch = Branch.find(params[:id])
     @sale_reviews = @branch.sale_reviews.page(params[:page])
     @score_range = 1..5
-    @scores = [3, 2, 1]
+    @scores = {
+      service: @branch.avg_service_satisfaction,
+      speed: @branch.avg_speed_satisfaction,
+      price: @branch.avg_sale_price_satisfaction
+    }
   end
 end
