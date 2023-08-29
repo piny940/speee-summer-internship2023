@@ -1,3 +1,6 @@
+- content_for(:breadcrumbs) do
+  = render 'application/breadcrumbs', args: { branch: @branch }
+
 - if @branch.sale_reviews.empty?
   - content_for(:noindex, true)
 
@@ -28,7 +31,7 @@
     .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.average_service_satisfaction}）
     
     - @sale_reviews.each do |review|
-      = link_to root_path, class: "review-card" do 
+      = link_to sale_review_path(review), class: "review-card" do 
         .card.w-75.mb-3
           .card-body
             .card-title #{review.title}：★#{review.service_satisfaction}
