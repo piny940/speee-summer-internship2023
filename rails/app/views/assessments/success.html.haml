@@ -1,5 +1,5 @@
 - content_for(:breadcrumbs) do
-  = render 'application/breadcrumbs', args: { branch: @branch }
+  = render 'application/breadcrumbs', args: { city: @branch.city, branch: @branch }
 - content_for :title, 'お問い合わせありがとうございました'
 
 %h1.text-center
