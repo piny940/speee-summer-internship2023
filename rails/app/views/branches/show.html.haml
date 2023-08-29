@@ -26,7 +26,7 @@
       %p.d-flex.justify-content-center.m-0
         %p.fw-bold.m-0 売却スコア
         %div= render 'branches/display_stars', sale_score: sale_score.to_i, range: @score_range
-        %div= sale_score
+        .average-sale-score= sale_score
 
     .col.branch-info
       = render 'branches/description', branch: @branch
