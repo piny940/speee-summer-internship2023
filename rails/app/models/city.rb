@@ -10,6 +10,10 @@ class City < ApplicationRecord
   has_many :sale_reviews, dependent: :destroy # この市の物件に対する口コミ
   has_many :raw_sale_reviews, dependent: :destroy
 
+  def prefecture_city_name
+    "#{prefecture.name} #{name}"
+  end
+
   def self.create_cities_from_csv(path)
     data = CSV.read(path)[1..]
     data.each_with_index do |row, idx|

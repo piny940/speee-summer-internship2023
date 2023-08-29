@@ -44,14 +44,8 @@
 
   = f.fields_for :assessment, @assessment do |assessment_f|
     .row.mt-3
-      .col-4.text-center 
-        %label{ for: 'prefecture_id' } 都道府県
-      .col-4.text-center= collection_select :prefecture, :id, Prefecture.all, :id, :name, {}, class: 'form-select'
-      .col-4.text-center= f.submit "市区町村を絞り込む", name: 'query_prefecture', class: "btn btn-secondary"
-
-    .row.mt-3
-      .col-4.text-center= assessment_f.label :city_id, "市区町村"
-      .col-8.text-center= assessment_f.collection_select :city_id, @cities, :id, :name, {}, class: 'form-select'
+      .col-4.text-center= assessment_f.label :city_id, "都道府県・市区町村"
+      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name, {}, class: 'form-select'
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_address, "物件住所（市区町村以下）"
