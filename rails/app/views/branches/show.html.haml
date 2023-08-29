@@ -12,6 +12,7 @@
     .col.text-center.position-relative.graphics
       .d-flex.align-items-center.justify-content-center.canvas-wrapper
         %canvas#myChart
+        %p.position-absolute.score-point 3.0
       %p.d-flex.justify-content-center.m-0
         %p.fw-bold.m-0 売却スコア
         %div= render 'branches/display_stars', sale_score: @branch.average_sale_score, range: @score_range
