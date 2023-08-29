@@ -95,6 +95,3 @@ gem 'sassc-rails'
 
 # enumsの値を日本語化
 gem 'enum_help'
-
-#  企業ページのグラフ
-gem 'chart-js-rails'
