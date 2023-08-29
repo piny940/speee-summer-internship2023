@@ -1,3 +1,6 @@
+- if @branch.sale_reviews.empty?
+  - content_for(:noindex, true)
+
 .branch-wrapper
   %h1.text-center #{@branch.company.name} #{@branch.name}
   .row.mt-5.pb-5
