@@ -4,6 +4,16 @@
 
 %h1.page_title.text-center
   査定依頼フォーム
+%h2.text-center.h3
+  = @branch.company_branch_name
+%p.text-center
+  査定可能なエリア:
+  - if @branch.assessable_cities.length < 4
+    = @branch.assessable_cities.map{ |city| city.prefecture.name + city.name }.join(', ')
+  - else
+    = "#{@branch.assessable_cities[...3].map{ |city| city.prefecture.name + city.name }.join(', ')}...他"
+    
+
 = form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5', method: :post) do |f|
   - if @assessment_user&.errors&.any?
     - @assessment_user.errors.full_messages.each do |msg|
