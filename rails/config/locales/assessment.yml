@@ -13,8 +13,6 @@ ja:
         property_exclusive_area: 専有面積
         property_land_area: 土地面積
         property_building_area: 建物面積
-        property_building_area_unit: 建物面積の単位
-        property_floor_area: 延床面積
         property_room_plan: 間取り
         property_constructed_year: 竣工年
       assessment_user:

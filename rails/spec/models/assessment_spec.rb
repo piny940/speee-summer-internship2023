@@ -22,8 +22,6 @@ RSpec.describe Assessment do
     #     expect(invalid_assessment.errors[:property_type]).to include 'は3以下の値にしてください'
     #     expect(invalid_assessment.errors[:property_exclusive_area]).to include 'を入力してください'
     #     expect(invalid_assessment.errors[:property_building_area]).to include 'を入力してください'
-    #     expect(invalid_assessment.errors[:property_building_area_unit]).to include 'は2以下の値にしてください'
-    #     expect(invalid_assessment.errors[:property_floor_area]).to include 'を入力してください'
     #     expect(invalid_assessment.errors[:property_room_plan]).to include 'は13以下の値にしてください'
     #     expect(invalid_assessment.errors[:property_constructed_year]).to include 'は1925以上の値にしてください'
     #   end

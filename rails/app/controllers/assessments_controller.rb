@@ -45,8 +45,6 @@ class AssessmentsController < ApplicationController
                                                          :property_exclusive_area,
                                                          :property_land_area,
                                                          :property_building_area,
-                                                         :property_building_area_unit,
-                                                         :property_floor_area,
                                                          :property_room_plan,
                                                          :property_constructed_year)
   end
