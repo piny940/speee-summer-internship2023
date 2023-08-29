@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AssessmentsController < ApplicationController
+  before_action :require_branch
+
   def new
     @assessment_user = AssessmentUser.new
     @assessment = Assessment.new
@@ -25,6 +27,10 @@ class AssessmentsController < ApplicationController
   def succsess; end
 
   private
+
+  def require_branch
+    @branch = Branch.find(params[:branch_id])
+  end
 
   def assessment_user_params
     params.require(:assessment_user).permit(:first_name, :last_name, :first_name_kana, :last_name_kana,
@@ -53,7 +59,7 @@ class AssessmentsController < ApplicationController
         @assessment_user.save!
         @assessment.save!
       end
-      redirect_to assessments_success_path
+      redirect_to success_branch_assessments_path(@branch)
     else
       render 'new', status: :bad_request
     end

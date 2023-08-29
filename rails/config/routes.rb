@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   mount KomachiHeartbeat::Engine => '/ops'
 
   root 'homes#show'
-  get '/assessments/success', to: 'assessments#success'
 
   resources :branches, only: %i[show] do
-    resources :assessments, only: %i[new create]
+    resources :assessments, only: %i[new create] do
+      get :success, on: :collection
+    end
   end
   resources :sale_reviews, only: %i[show]
 end
