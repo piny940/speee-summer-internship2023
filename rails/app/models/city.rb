@@ -11,7 +11,7 @@ class City < ApplicationRecord
   has_many :raw_sale_reviews, dependent: :destroy
 
   def prefecture_city_name
-    "#{prefecture.name} #{name}"
+    prefecture.name + name
   end
 
   def self.create_cities_from_csv(path)

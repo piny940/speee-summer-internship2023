@@ -25,9 +25,7 @@ RSpec.describe 'Assessments' do
       it { is_expected.to have_field 'assessment_user[email]' }
       it { is_expected.to have_text '電話番号' }
       it { is_expected.to have_field 'assessment_user[tel]' }
-      it { is_expected.to have_select '都道府県' }
-      it { is_expected.to have_button '市区町村を絞り込む' }
-      it { is_expected.to have_text '市区町村' }
+      it { is_expected.to have_text '都道府県・市区町村' }
       it { is_expected.to have_selector 'select[name="assessment_user[assessment][city_id]"]' }
       it { is_expected.to have_text '物件住所（市区町村以下）' }
       it { is_expected.to have_selector 'input[name="assessment_user[assessment][property_address]"]' }
@@ -50,7 +48,10 @@ RSpec.describe 'Assessments' do
   describe '査定依頼送信の確認' do
     let(:branch) { create(:branch) }
     let(:city) { create(:city) }
-    let(:assessment) { build(:valid_assessment, branch_id: branch.id, city_id: city.id) }
+    let(:assessment) {
+      branch.assessable_cities << city
+      build(:valid_assessment, branch_id: branch.id, city_id: city.id)
+    }
 
     it '正しい入力内容で査定依頼を行った場合' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       visit new_branch_assessment_path(branch_id: assessment.branch.id)
@@ -62,8 +63,6 @@ RSpec.describe 'Assessments' do
       fill_in 'メールアドレス', with: assessment.assessment_user.email
       fill_in '電話番号', with: assessment.assessment_user.tel
 
-      select assessment.city.prefecture.name, from: 'prefecture_id'
-      find('input[name="query_prefecture"]').click
       within '#assessment_user_assessment_city_id' do
         find("option[value=#{assessment.city.id}]").click
       end

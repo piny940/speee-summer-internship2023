@@ -9,9 +9,9 @@
 %p.text-center
   査定可能なエリア:
   - if @branch.assessable_cities.length < 4
-    = @branch.assessable_cities.map{ |city| city.prefecture.name + city.name }.join(', ')
+    = @branch.assessable_cities.map(&:prefecture_city_name).join(', ')
   - else
-    = "#{@branch.assessable_cities[...3].map{ |city| city.prefecture.name + city.name }.join(', ')}...他"
+    = "#{@branch.assessable_cities[...3].map(&:prefecture_city_name).join(', ')}...他"
     
 
 = form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5', method: :post) do |f|
