@@ -2,7 +2,7 @@
 
 require 'net/http'
 
-module Miniul
+class Miniul
   CONVERSIONS_ENDPOINT = 'https://miniul-api.herokuapp.com/affiliate/v2/conversions'
   def self.create_assessment(params)
     uri = URI.parse(CONVERSIONS_ENDPOINT)
