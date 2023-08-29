@@ -1,3 +1,8 @@
+- content_for(:breadcrumbs) do
+  = render 'application/breadcrumbs', args: { sale_review: @sale_review, branch: @branch }
+- content_for(:title, @sale_review.title)
+- content_for(:meta_keywords, @branch.company_branch_name)
+
 %h1.text-center
   = @sale_review.title
 
