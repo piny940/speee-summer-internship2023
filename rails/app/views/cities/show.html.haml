@@ -14,7 +14,7 @@
           .row 
             .col-3
               = branch.company.name
-              %div ★ #{number_with_precision(branch.average_sale_score, precision: 1)}
+              %div ★ #{number_with_precision(branch.avg_satisfactions, precision: 1)}
             %p.col-9
               営業時間：#{branch.business_hours}
               %br
