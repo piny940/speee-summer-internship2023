@@ -19,7 +19,7 @@ class AssessmentsController < ApplicationController
 
     response = create_miniul_assessment(@assessment_user, @assessment)
 
-    if response.code == '201'
+    if response.code == '200'
       redirect_to success_branch_assessments_path(@branch)
     else
       redirect_to new_branch_assessment_path(@branch), alert: I18n.t('messages.assessment.miniul_api_fail')

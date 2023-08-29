@@ -46,6 +46,7 @@ RSpec.describe 'Assessments' do
   end
 
   describe '査定依頼送信の確認' do
+    before { stub_miniul(branch, city) }
     let(:branch) { create(:branch) }
     let(:city) { create(:city) }
     let(:assessment) do
@@ -84,5 +85,12 @@ RSpec.describe 'Assessments' do
 
       expect(page).to have_current_path(success_branch_assessments_path(branch))
     end
+  end
+
+  def stub_miniul(branch, city)
+    stub_request(:post, 'https://miniul-api.herokuapp.com/affiliate/v2/conversions').with(
+      headers: { 'Content-Type' => 'application/json' },
+      body: hash_including({ branch_id: branch.id, property_city: city.id })
+    ).to_return(status: 200, body: { message: 'ok' }.to_json)
   end
 end
