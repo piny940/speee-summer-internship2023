@@ -8,7 +8,7 @@ RSpec.describe 'Assessments' do
   describe '必須要素の確認' do
     context '査定依頼ページを表示した場合' do
       before do
-        visit new_branch_assessments_path(branch_id: 1)
+        visit new_branch_assessment_path(branch_id: 1)
       end
 
       it { is_expected.to have_current_path('/branches/1/assessments/new') }
@@ -57,7 +57,7 @@ RSpec.describe 'Assessments' do
     end
 
     it '正しい入力内容で査定依頼を行った場合' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
-      visit new_branch_assessments_path(branch_id: assessment.branch.id)
+      visit new_branch_assessment_path(branch_id: assessment.branch.id)
 
       fill_in 'assessment_user[last_name]', with: assessment.assessment_user.last_name
       fill_in 'assessment_user[first_name]', with: assessment.assessment_user.first_name
