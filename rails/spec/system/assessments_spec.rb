@@ -39,10 +39,6 @@ RSpec.describe 'Assessments' do
       it { is_expected.to have_selector 'input[name="assessment_user[assessment][property_land_area]"]' }
       it { is_expected.to have_text '建物面積' }
       it { is_expected.to have_selector 'input[name="assessment_user[assessment][property_building_area]"]' }
-      it { is_expected.to have_text '建物面積単位' }
-      it { is_expected.to have_selector 'select[name="assessment_user[assessment][property_building_area_unit]"]' }
-      it { is_expected.to have_text '延床面積' }
-      it { is_expected.to have_selector 'input[name="assessment_user[assessment][property_floor_area]"]' }
       it { is_expected.to have_text '間取り' }
       it { is_expected.to have_selector 'select[name="assessment_user[assessment][property_room_plan]"]' }
       it { is_expected.to have_text '竣工年' }
@@ -78,10 +74,6 @@ RSpec.describe 'Assessments' do
       fill_in '専有面積', with: assessment.property_exclusive_area
       fill_in '土地面積', with: assessment.property_land_area
       fill_in '建物面積', with: assessment.property_building_area
-      within '#assessment_user_assessment_property_building_area_unit' do
-        find("option[value=#{assessment.property_building_area_unit}]").click
-      end
-      fill_in '延床面積', with: assessment.property_floor_area
       within '#assessment_user_assessment_property_room_plan' do
         find("option[value=#{assessment.property_room_plan}]").click
       end
