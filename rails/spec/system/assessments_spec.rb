@@ -8,6 +8,7 @@ RSpec.describe 'Assessments' do
   describe '必須要素の確認' do
     context '査定依頼ページを表示した場合' do
       let(:branch) { create(:branch) }
+
       before do
         visit new_branch_assessment_path(branch)
       end
