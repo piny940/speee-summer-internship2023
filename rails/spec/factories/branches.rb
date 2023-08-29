@@ -8,7 +8,7 @@ FactoryBot.define do
     # sequence(:company_id) { |n| "#{n}" }
     # sequence(:city_id) { |n| "#{n}" }
 
-    sequence(:name) { |n| "ベテすま不動産#{n}" }
+    sequence(:name) { |n| "ベテすま店#{n}" }
     logo_url { 'https://foodslink.jp/syokuzaihyakka/syun/fruit/abricotto/anzu21s.jpg' }
     post_number { '123-4567' }
     address { '東京都港区六本木３丁目２−１ 住友不動産六本木グランドタワー 35F' }

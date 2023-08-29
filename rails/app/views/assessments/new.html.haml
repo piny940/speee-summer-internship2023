@@ -1,8 +1,20 @@
 - content_for(:title, "査定依頼フォーム")
+- content_for(:breadcrumbs) do
+  = render 'application/breadcrumbs', args: { branch: @branch }
 
 %h1.page_title.text-center
   査定依頼フォーム
-= form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5') do |f|
+%h2.text-center.h3
+  = @branch.company_branch_name
+%p.text-center
+  査定可能なエリア:
+  - if @branch.assessable_cities.length < 4
+    = @branch.assessable_cities.map(&:prefecture_city_name).join(', ')
+  - else
+    = "#{@branch.assessable_cities[...3].map(&:prefecture_city_name).join(', ')}...他"
+    
+
+= form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5', method: :post) do |f|
   - if @assessment_user&.errors&.any?
     - @assessment_user.errors.full_messages.each do |msg|
       .text-danger=msg
@@ -32,13 +44,8 @@
 
   = f.fields_for :assessment, @assessment do |assessment_f|
     .row.mt-3
-      .col-4.text-center 都道府県
-      .col-4.text-center= collection_select :prefecture, :id, Prefecture.all, :id, :name, {}, class: 'form-select'
-      .col-4.text-center= f.submit "市区町村を絞り込む", name: 'query_prefecture', class: "btn btn-secondary"
-
-    .row.mt-3
-      .col-4.text-center= assessment_f.label :city_id, "市区町村"
-      .col-8.text-center= assessment_f.collection_select :city_id, @cities, :id, :name, {}, class: 'form-select'
+      .col-4.text-center= assessment_f.label :city_id, "都道府県・市区町村"
+      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name, {}, class: 'form-select'
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_address, "物件住所（市区町村以下）"
@@ -61,14 +68,6 @@
       .col-8.text-center= assessment_f.number_field :property_building_area, step: "0.001",class: 'form-control'
 
     .row.mt-3
-      .col-4.text-center= assessment_f.label :property_building_area_unit, "建物面積単位"
-      .col-8.text-center= assessment_f.select :property_building_area_unit, Assessment.property_building_area_units_i18n.invert, {}, class: 'form-select'
-
-    .row.mt-3
-      .col-4.text-center= assessment_f.label :property_floor_area, "延床面積"
-      .col-8.text-center= assessment_f.number_field :property_floor_area, step: "0.001", class: 'form-control'
-
-    .row.mt-3
       .col-4.text-center= assessment_f.label :property_room_plan, "間取り"
       .col-8.text-center= assessment_f.select :property_room_plan, Assessment.property_room_plans_i18n.invert, {}, class: 'form-select'
 
@@ -77,4 +76,4 @@
       .col-8.text-center= assessment_f.number_field :property_constructed_year, class: 'form-control'
     
     .mt-4.d-flex.justify-content-center
-      = f.submit "査定依頼する", name: 'request_assessment', class: "btn btn-primary btn-lg btn--link"
+      = f.submit "査定依頼する", class: "btn btn-blue text-center w-auto btn--link"

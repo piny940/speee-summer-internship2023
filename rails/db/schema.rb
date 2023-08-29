@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_24_075915) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_29_053329) do
   create_table "assessment_users", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "first_name", null: false, comment: "名"
     t.string "last_name", null: false, comment: "姓"
@@ -28,11 +28,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_075915) do
     t.bigint "city_id", null: false, comment: "cityのidへの外部キー"
     t.string "property_address", null: false, comment: "対象物件の住所"
     t.integer "property_type", null: false, comment: "象物件の物件種別"
-    t.float "property_exclusive_area", null: false, comment: "対象物件の専有面積"
-    t.float "property_land_area", null: false, comment: "対象物件の土地面積"
-    t.float "property_building_area", null: false, comment: "対象物件の建物面積"
-    t.integer "property_building_area_unit", null: false, comment: "建物面積の単位"
-    t.float "property_floor_area", null: false, comment: "対象物件の延床面積"
+    t.float "property_exclusive_area", default: 0.0, null: false, comment: "対象物件の専有面積"
+    t.float "property_land_area", default: 0.0, null: false, comment: "対象物件の土地面積"
+    t.float "property_building_area", default: 0.0, null: false, comment: "対象物件の建物面積"
     t.integer "property_room_plan", null: false, comment: "対象物件の間取り"
     t.integer "property_constructed_year", null: false, comment: "対象物件の築年数(竣工年)"
     t.datetime "created_at", null: false
@@ -115,12 +113,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_075915) do
     t.integer "agency_type", null: false, comment: "媒介契約の形態"
     t.string "title", null: false, comment: "見出し"
     t.integer "sale_reason", null: false, comment: "売却理由"
-    t.text "concerns", null: false, comment: "売却時に不安だったこと"
+    t.integer "concerns", null: false, comment: "売却時に不安だったこと"
     t.string "decision_factor", null: false, comment: "この会社に決めた理由"
-    t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度"
-    t.text "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
-    t.text "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
-    t.text "complaint", null: false, comment: "不動産会社に改善してほしい点"
+    t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度の理由"
+    t.string "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
+    t.string "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
+    t.string "complaint", default: "", null: false, comment: "不動産会社に改善してほしい点"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "discounted", default: false, null: false, comment: "値下げしたかどうか"
@@ -153,12 +151,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_075915) do
     t.integer "agency_type", null: false, comment: "媒介契約の形態"
     t.string "title", null: false, comment: "見出し"
     t.integer "sale_reason", null: false, comment: "売却理由"
-    t.text "concerns", null: false, comment: "売却時に不安だったこと"
+    t.integer "concerns", null: false, comment: "売却時に不安だったこと"
     t.string "decision_factor", null: false, comment: "この会社に決めた理由"
-    t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度"
-    t.text "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
-    t.text "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
-    t.text "complaint", null: false, comment: "不動産会社に改善してほしい点"
+    t.integer "service_satisfaction", null: false, comment: "不動産会社の対応満足度の理由"
+    t.string "service_satisfaction_reason", null: false, comment: "不動産会社の対応満足度の理由"
+    t.string "advice_for_next", null: false, comment: "今後売却する人へのアドバイス"
+    t.string "complaint", default: "", null: false, comment: "不動産会社に改善してほしい点"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "discounted", default: false, null: false, comment: "値下げしたかどうか"

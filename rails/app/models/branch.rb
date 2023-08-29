@@ -25,6 +25,10 @@ class Branch < ApplicationRecord
   def avg_satisfactions
     (avg_service_satisfaction + avg_sale_price_satisfaction + avg_speed_satisfaction) / 3.0
   end
+  
+  def company_branch_name
+    name.present? ? "#{company.name} #{name}" : company.name
+  end
 
   def self.create_branches_from_csv(path)
     data = CSV.read(path)[2..]

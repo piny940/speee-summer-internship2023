@@ -16,12 +16,6 @@
 
 @import "bootstrap";
 
-a {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-
 // ==================================
 //   branches#show
 // ==================================
@@ -38,10 +32,22 @@ a {
     color: #ffffff;
     background: #3182CE;
     transition: 0.2s;
+  }
+  
+  a.review-card {
+    text-decoration: none;
+    color: inherit;
+  }
+}
 
-    &:hover {
-      background: #205d96;
-    }
+.btn.btn-blue {
+  padding: 1em 3em;
+  color: #ffffff;
+  background: #3182CE;
+  transition: 0.2s;
+
+  &:hover {
+    background: #205d96;
   }
   
   .graphics {

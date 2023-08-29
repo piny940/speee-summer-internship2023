@@ -30,5 +30,6 @@ FactoryBot.define do
     service_satisfaction { 4 }
     service_satisfaction_reason { '満足度の理由' }
     advice_for_next { 'がんば！' }
+    complaint { 'ここ改善したほうがいいよ' }
   end
 end

@@ -1,2 +1,10 @@
-%h1
-  You have successfully requested a assessment!
+- content_for(:breadcrumbs) do
+  = render 'application/breadcrumbs', args: { branch: @branch }
+- content_for :title, 'お問い合わせありがとうございました'
+
+%h1.text-center
+  お問い合わせありがとうございました
+%p
+  査定依頼ありがとうございます。
+  %br
+  不動産会社からのご連絡をお待ちください。

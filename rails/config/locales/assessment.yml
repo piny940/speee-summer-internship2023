@@ -13,8 +13,6 @@ ja:
         property_exclusive_area: 専有面積
         property_land_area: 土地面積
         property_building_area: 建物面積
-        property_building_area_unit: 建物面積の単位
-        property_floor_area: 延床面積
         property_room_plan: 間取り
         property_constructed_year: 竣工年
       assessment_user:
@@ -48,3 +46,6 @@ ja:
         five_lk_ldk: 5LK / 5LDK
         six_k_dk: 6K / 6DK
         six_lk_ldk_or_more: 6LK / 6LDK以上
+  messages:
+    assessment:
+      miniul_api_fail: 査定依頼に失敗しました
