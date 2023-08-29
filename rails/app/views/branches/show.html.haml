@@ -9,33 +9,34 @@
 
 .branch-wrapper
   %h1.text-center= @branch.company_branch_name
-  .row.mt-5.pb-5
-    .col-6
-      %h2.h3 #{@branch.catchphrase}
+  .row.mt-5.d-flex.justify-content-between
+    .col
+      %h2.h4.mb-3 #{@branch.catchphrase}
       %div.text-muted #{@branch.introduction}
     
-    .col-1
-    
-    .col-4.d-flex.justify-content-end
+    .col-3.d-flex.justify-content-end
       %img.img-fluid{ alt: "ロゴ画像", src: "#{@branch.logo_url}" }/
 
   .row.mt-5.pb-5
-    .col.text-center
-      .w-75.h-75.border.border-5.d-flex.align-items-center.justify-content-center
-        グラフ
-      %p.w-75.d-flex.justify-content-center
-        売却スコア
-        .average-sale-score #{number_with_precision(@branch.average_sale_score, precision: 1)}
+    .col.text-center.position-relative.graphics
+      - sale_score = number_with_precision(@branch.avg_satisfactions, precision: 1)
+      .d-flex.align-items-center.justify-content-center.canvas-wrapper
+        %canvas#branchRadarGraph{ data: { scores: @scores.to_json } }
+        %p.position-absolute.score-point= sale_score
+      %p.d-flex.justify-content-center.m-0
+        %p.fw-bold.m-0 売却スコア
+        %div= render 'branches/display_stars', sale_score: sale_score.to_i, range: @score_range
+        .average-sale-score= sale_score
 
-    .col
+    .col.branch-info
       = render 'branches/description', branch: @branch
 
   .row.mt-5
-    .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.average_service_satisfaction}）
+    .mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.avg_service_satisfaction}）
     
     - @sale_reviews.each do |review|
       = link_to sale_review_path(review), class: "review-card" do 
-        .card.w-75.mb-3
+        .card.mb-3
           .card-body
             .card-title #{review.title}：★#{review.service_satisfaction}
             .card-text.mt-2 #{review.service_satisfaction_reason}
@@ -43,6 +44,8 @@
 
 
   %div=paginate @sale_reviews
-  .d-flex.justify-content-center
+  .row.pt-5.d-flex.justify-content-center
     = link_to new_branch_assessment_path(@branch), class: "btn btn-blue text-center w-auto btn--link" do
       査定依頼をする
+
+%script{ src: "https://cdn.jsdelivr.net/npm/chart.js" }
