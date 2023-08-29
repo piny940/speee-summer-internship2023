@@ -7,11 +7,12 @@ RSpec.describe 'Assessments' do
 
   describe '必須要素の確認' do
     context '査定依頼ページを表示した場合' do
+      let(:branch) { create(:branch) }
       before do
-        visit new_branch_assessment_path(branch_id: 1)
+        visit new_branch_assessment_path(branch)
       end
 
-      it { is_expected.to have_current_path('/branches/1/assessments/new') }
+      it { is_expected.to have_current_path(new_branch_assessment_path(branch)) }
       it { is_expected.to have_selector '.page_title', text: '査定依頼フォーム' }
       it { is_expected.to have_text 'お名前' }
       it { is_expected.to have_field 'assessment_user[last_name]' }
@@ -50,11 +51,9 @@ RSpec.describe 'Assessments' do
   end
 
   describe '査定依頼送信の確認' do
-    let!(:assessment) do
-      branch = create(:branch)
-      city = create(:city)
-      build(:valid_assessment, branch_id: branch.id, city_id: city.id)
-    end
+    let(:branch) { create(:branch) }
+    let(:city) { create(:city) }
+    let(:assessment) { build(:valid_assessment, branch_id: branch.id, city_id: city.id) }
 
     it '正しい入力内容で査定依頼を行った場合' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       visit new_branch_assessment_path(branch_id: assessment.branch.id)
@@ -91,7 +90,7 @@ RSpec.describe 'Assessments' do
         click_on('査定依頼する')
       end.to change(AssessmentUser, :count).by(1).and change(Assessment, :count).by(1)
 
-      expect(page).to have_current_path(assessments_success_path)
+      expect(page).to have_current_path(success_branch_assessments_path(branch))
     end
   end
 end
