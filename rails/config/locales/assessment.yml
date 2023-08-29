@@ -46,3 +46,6 @@ ja:
         five_lk_ldk: 5LK / 5LDK
         six_k_dk: 6K / 6DK
         six_lk_ldk_or_more: 6LK / 6LDK以上
+  messages:
+    assessment:
+      miniul_api_fail: 査定依頼に失敗しました
