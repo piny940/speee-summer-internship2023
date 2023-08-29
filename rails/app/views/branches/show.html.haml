@@ -1,6 +1,6 @@
 .branch-wrapper
   %h1.text-center #{@branch.company.name} #{@branch.name}
-  .row.mt-5.pb-5
+  .row.mt-5
     .col-6
       %h2.h3 #{@branch.catchphrase}
       %div.text-muted #{@branch.introduction}
@@ -11,14 +11,15 @@
       %img.img-fluid{ alt: "ロゴ画像", src: "#{@branch.logo_url}" }/
 
   .row.mt-5.pb-5
-    .col.text-center
-      .w-75.h-75.border.border-5.d-flex.align-items-center.justify-content-center
+    .col.text-center.position-relative
+      .d-flex.align-items-center.justify-content-center.canvas-wrapper
         %canvas#myChart
-      %p.w-75.d-flex.justify-content-center
+      %p.d-flex.justify-content-center.m-0
         売却スコア
-        %div #{number_with_precision(@branch.average_sale_score, precision: 1)}
+        %div= render 'branches/display_stars', sale_score: @branch.average_sale_score, range: @score_range
+        %div= number_with_precision(@branch.average_sale_score, precision: 1)
 
-    .col
+    .col.branch-info
       .fw-bold.mb-3 #{@branch.company.name}について
       %ul.list-unstyled
         %li 企業名：#{@branch.company.name}
@@ -34,7 +35,7 @@
     
     - @sale_reviews.each do |review|
       = link_to root_path, class: "review-card" do 
-        .card.w-75.mb-3
+        .card.mb-3
           .card-body
             .card-title #{review.title}：★#{review.service_satisfaction}
             .card-text.mt-2 #{review.service_satisfaction_reason}
@@ -69,13 +70,21 @@
           display: false,
         }
       },
+      hover: {
+        mode: 'index',
+        intersec: false
+      },
+      pointHitRadius: 50,
       scales: {
         r: {
             angleLines: {
                 display: false
             },
             suggestedMin: 0,
-            suggestedMax: 5
+            suggestedMax: 5,
+            ticks: {
+              stepSize: 1
+            }
           }
         }
     }

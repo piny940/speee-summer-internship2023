@@ -27,6 +27,11 @@ a {
 // ==================================
 .branch-wrapper {
   padding-bottom: 10em;
+
+  @media screen and (min-width: 520px) {
+    width: 75%;
+    margin: 0 auto;  
+  }
   
   .btn {
     padding: 1em 3em;
@@ -37,5 +42,18 @@ a {
     &:hover {
       background: #205d96;
     }
+  }
+
+  .canvas-wrapper {
+    height: 80%;
+  }
+
+  .star {
+    color: #dee262;
+    font-size: 1.7em;
+  }
+
+  .branch-info {
+    margin-top: 5rem;
   }
 }
