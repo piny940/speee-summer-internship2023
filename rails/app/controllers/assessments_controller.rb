@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AssessmentsController < ApplicationController
-  before_action :set_branch
+  before_action :require_branch
 
   def new
     @assessment_user = AssessmentUser.new
@@ -28,7 +28,7 @@ class AssessmentsController < ApplicationController
 
   private
 
-  def set_branch
+  def require_branch
     @branch = Branch.find(params[:branch_id])
   end
 
