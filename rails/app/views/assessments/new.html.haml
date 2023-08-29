@@ -2,7 +2,7 @@
 
 %h1.page_title.text-center
   査定依頼フォーム
-= form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5') do |f|
+= form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5', method: :post) do |f|
   - if @assessment_user&.errors&.any?
     - @assessment_user.errors.full_messages.each do |msg|
       .text-danger=msg
@@ -32,7 +32,8 @@
 
   = f.fields_for :assessment, @assessment do |assessment_f|
     .row.mt-3
-      .col-4.text-center 都道府県
+      .col-4.text-center 
+        %label{ for: 'prefecture_id' } 都道府県
       .col-4.text-center= collection_select :prefecture, :id, Prefecture.all, :id, :name, {}, class: 'form-select'
       .col-4.text-center= f.submit "市区町村を絞り込む", name: 'query_prefecture', class: "btn btn-secondary"
 

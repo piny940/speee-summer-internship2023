@@ -14,18 +14,17 @@ RSpec.describe 'Assessments' do
       it { is_expected.to have_current_path('/branches/1/assessments/new') }
       it { is_expected.to have_selector '.page_title', text: '査定依頼フォーム' }
       it { is_expected.to have_text 'お名前' }
-      it { is_expected.to have_field 'input[name="assessment_user[last_name]"]' }
-      it { is_expected.to have_field 'input[name="assessment_user[first_name]"]' }
+      it { is_expected.to have_field 'assessment_user[last_name]' }
+      it { is_expected.to have_field 'assessment_user[first_name]' }
       it { is_expected.to have_text 'フリガナ' }
-      it { is_expected.to have_field 'input[name="assessment_user[last_name_kana]"]' }
-      it { is_expected.to have_field 'input[name="assessment_user[first_name_kana]"]' }
+      it { is_expected.to have_field 'assessment_user[last_name_kana]' }
+      it { is_expected.to have_field 'assessment_user[first_name_kana]' }
       it { is_expected.to have_text 'メールアドレス' }
-      it { is_expected.to have_field 'input[name="assessment_user[email]"]' }
+      it { is_expected.to have_field 'assessment_user[email]' }
       it { is_expected.to have_text '電話番号' }
-      it { is_expected.to have_field 'input[name="assessment_user[tel]"]' }
-      it { is_expected.to have_text '都道府県' }
-      it { is_expected.to have_select 'select[name="prefecture[id]"]' }
-      it { is_expected.to have_field 'input[name="query_prefecture"]' }
+      it { is_expected.to have_field 'assessment_user[tel]' }
+      it { is_expected.to have_select '都道府県' }
+      it { is_expected.to have_button '市区町村を絞り込む' }
       it { is_expected.to have_text '市区町村' }
       it { is_expected.to have_selector 'select[name="assessment_user[assessment][city_id]"]' }
       it { is_expected.to have_text '物件住所（市区町村以下）' }
@@ -46,22 +45,27 @@ RSpec.describe 'Assessments' do
       it { is_expected.to have_selector 'select[name="assessment_user[assessment][property_room_plan]"]' }
       it { is_expected.to have_text '竣工年' }
       it { is_expected.to have_selector 'input[name="assessment_user[assessment][property_constructed_year]"]' }
-      it { is_expected.to have_field 'input[name="request_assessment"]' }
+      it { is_expected.to have_button '査定依頼する' }
     end
   end
 
   describe '査定依頼送信の確認' do
-    let!(:assessment) { create(:valid_assessment) }
+    let!(:assessment) do
+      branch = create(:branch)
+      city = create(:city)
+      build(:valid_assessment, branch_id: branch.id, city_id: city.id)
+    end
 
     it '正しい入力内容で査定依頼を行った場合' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       visit new_branch_assessments_path(branch_id: assessment.branch.id)
+
       fill_in 'assessment_user[last_name]', with: assessment.assessment_user.last_name
       fill_in 'assessment_user[first_name]', with: assessment.assessment_user.first_name
       fill_in 'assessment_user[last_name_kana]', with: assessment.assessment_user.last_name_kana
       fill_in 'assessment_user[first_name_kana]', with: assessment.assessment_user.first_name_kana
-      puts find_by_id('prefecture_id')['innerHTML']
       fill_in 'メールアドレス', with: assessment.assessment_user.email
       fill_in '電話番号', with: assessment.assessment_user.tel
+
       select assessment.city.prefecture.name, from: 'prefecture_id'
       find('input[name="query_prefecture"]').click
       within '#assessment_user_assessment_city_id' do
@@ -84,7 +88,7 @@ RSpec.describe 'Assessments' do
       fill_in '竣工年', with: assessment.property_constructed_year
 
       expect do
-        find('input[name="request_assessment"]').click
+        click_on('査定依頼する')
       end.to change(AssessmentUser, :count).by(1).and change(Assessment, :count).by(1)
 
       expect(page).to have_current_path(assessments_success_path)
