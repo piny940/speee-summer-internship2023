@@ -16,17 +16,16 @@
 
 @import "bootstrap";
 
-a {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-
 // ==================================
 //   branches#show
 // ==================================
 .branch-wrapper {
   padding-bottom: 10em;
+
+  a.review-card {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .btn.btn-blue {

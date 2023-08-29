@@ -1,0 +1,8 @@
+.card
+  .card-body 
+    %h3.card-title.h4
+      = prefecture.name
+    .card-text 
+      %ul.cities.list-unstyled.d-flex.flex-wrap
+        - prefecture.cities.each do |city|
+          %li.px-2.py-1.city= link_to city.name, "#"
