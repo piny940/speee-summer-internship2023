@@ -18,15 +18,16 @@
       %img.img-fluid{ alt: "ロゴ画像", src: "#{@branch.logo_url}" }/
 
   .row.mt-5.pb-5
-    .col.text-center.position-relative.graphics
-      - sale_score = number_with_precision(@branch.avg_satisfactions, precision: 1)
-      .d-flex.align-items-center.justify-content-center.canvas-wrapper
-        %canvas#branchRadarGraph{ data: { scores: @scores.to_json } }
-        %p.position-absolute.score-point= sale_score
-      %p.d-flex.justify-content-center.m-0
-        %p.fw-bold.m-0 売却スコア
-        %div= render 'branches/display_stars', sale_score: sale_score.to_i, range: @score_range
-        .average-sale-score= sale_score
+    - if @branch.sale_reviews.present?
+      .col.text-center.position-relative.graphics
+        - sale_score = number_with_precision(@branch.avg_satisfactions, precision: 1)
+        .d-flex.align-items-center.justify-content-center.canvas-wrapper
+          %canvas#branchRadarGraph{ data: { scores: @scores.to_json } }
+          %p.position-absolute.score-point= sale_score
+        %p.d-flex.justify-content-center.m-0
+          %p.fw-bold.m-0 売却スコア
+          %div= render 'branches/display_stars', sale_score: sale_score.to_i, range: @score_range
+          .average-sale-score= sale_score
 
     .col.branch-info
       = render 'branches/description', branch: @branch
