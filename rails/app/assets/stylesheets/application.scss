@@ -38,3 +38,10 @@
     background: #205d96;
   }
 }
+
+.truncate-text-at-line-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
