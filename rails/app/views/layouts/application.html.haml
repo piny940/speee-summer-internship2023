@@ -7,8 +7,12 @@
       - if yield(:title).strip.present?
         \-
       ベテランすまい
-    %meta{:content => "#{yield :meta_keywords}BackendSongList, railsテンプレート", :name => "keywords"}/
+    %meta{:content => "#{yield :meta_keywords}, ベテランすまい, 不動産, 査定依頼", :name => "keywords"}/
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{
+      name: 'description',
+      content: yield(:description).presence || '信頼できる不動産会社の口コミと評価を一括で確認できるサイトです。不動産売却や査定依頼を検討中の方に向けて、実際にその会社を利用した人々の体験や意見を集約し、安心して取引先を選ぶお手伝いをします。豊富な口コミデータと評価を通じて、最適な不動産パートナーを見つけて、スムーズな売却プロセスを実現しましょう。'
+    }
     = csrf_meta_tags
     = csp_meta_tag
     = javascript_importmap_tags

@@ -10,6 +10,10 @@ class Branch < ApplicationRecord
   has_many :sale_reviews, dependent: :destroy
   has_many :raw_sale_reviews, dependent: :destroy
 
+  def company_branch_name
+    name.present? ? "#{company.name} #{name}" : company.name
+  end
+
   # 対応満足度の平均計算
   def average_service_satisfaction
     sale_reviews.average(:service_satisfaction)

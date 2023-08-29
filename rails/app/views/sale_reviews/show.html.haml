@@ -1,11 +1,15 @@
+- content_for(:breadcrumbs) do
+  = render 'application/breadcrumbs', args: { sale_review: @sale_review, branch: @branch }
+- content_for(:title, @sale_review.title)
+- content_for(:meta_keywords, @branch.company_branch_name)
+
 %h1.text-center
   = @sale_review.title
 
 %ul.list-unstyled.property-info.mt-5
   %li
     売却した不動産会社名 :
-    = @sale_review.branch.company.name
-    = @sale_review.branch.name
+    = @sale_review.branch.company_branch_name
   %li
     住所 :
     = @sale_review.city.prefecture.name
