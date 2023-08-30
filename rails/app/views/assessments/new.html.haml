@@ -16,7 +16,7 @@
 
 = form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5', method: :post) do |f|
   - if @assessment_user&.errors&.any?
-    - @assessment_user.errors.full_messages.each do |msg|
+    - @assessment_user.errors.to_hash.reject{|k, v| k == :assessments }.each do |k, msg|
       .text-danger=msg
   - if @assessment&.errors&.any?
     - @assessment.errors.full_messages.each do |msg|
