@@ -16,6 +16,7 @@
 
 = form_with(model: @assessment_user, url: branch_assessments_path, class: 'mt-5 mb-5', method: :post) do |f|
   - if @assessment_user&.errors&.any?
+    - @assessment_user.errors.delete(:assessments)
     - @assessment_user.errors.full_messages.each do |msg|
       .text-danger=msg
   - if @assessment&.errors&.any?
