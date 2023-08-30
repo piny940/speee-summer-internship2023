@@ -8,8 +8,8 @@
 
 .mt-5.branch-wrapper
   - @branches.each do |branch|
-    = link_to branch_path(id: branch.id), class: "review-card" do
-      .card.w-75.mb-3
+    = link_to branch_path(id: branch.id), class: "link-card" do
+      .card.mb-3
         .card-body
           .row 
             .col-3
@@ -28,5 +28,5 @@
                 %p.truncate-text-at-line-3 #{branch.sale_reviews.order(created_at: :desc).first.decision_factor}
   %div= paginate @branches
 
-.prefecture.mb-2
+.prefecture.mb-5
   = render 'prefectures/cities', prefecture: @city.prefecture

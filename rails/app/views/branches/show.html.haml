@@ -36,7 +36,7 @@
     %h3.mb-3.fw-bold #{@branch.company.name}で売却したひとの不動産会社についての口コミ（平均評価★#{@branch.avg_service_satisfaction}）
     
     - @sale_reviews.each do |review|
-      = link_to sale_review_path(review), class: "review-card" do 
+      = link_to sale_review_path(review), class: "link-card" do 
         .card.mb-3
           .card-body
             %h4.card-title #{review.title}：★#{review.service_satisfaction}
