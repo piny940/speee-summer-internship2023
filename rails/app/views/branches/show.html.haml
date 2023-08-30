@@ -43,8 +43,7 @@
             .card-text.mt-2 #{review.service_satisfaction_reason}
             .mt-3.text-body-tertiary.d-flex.justify-content-end 成約価格 #{format_price review.final_sale_price}（#{review.city.prefecture_city_name}・#{year_month_description(review.sale_period)}に売却）
 
-
-  %div=paginate @sale_reviews 
+  %div=paginate @sale_reviews
   .row.pt-5.d-flex.justify-content-center
     = link_to new_branch_assessment_path(@branch), class: "btn btn-blue text-center w-auto btn--link" do
       査定依頼をする
