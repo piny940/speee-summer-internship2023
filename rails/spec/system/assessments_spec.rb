@@ -66,17 +66,17 @@ RSpec.describe 'Assessments' do
       fill_in '電話番号', with: assessment.assessment_user.tel
 
       within '#assessment_user_assessment_city_id' do
-        find("option[value=#{assessment.city.id}]").click
+        find("option[value=#{assessment.city.id}]").select_option
       end
       fill_in '物件住所（市区町村以下）', with: assessment.property_address
       within '#assessment_user_assessment_property_type' do
-        find("option[value=#{assessment.property_type}]").click
+        find("option[value=#{assessment.property_type}]").select_option
       end
       fill_in '専有面積', with: assessment.property_exclusive_area
       fill_in '土地面積', with: assessment.property_land_area
       fill_in '建物面積', with: assessment.property_building_area
       within '#assessment_user_assessment_property_room_plan' do
-        find("option[value=#{assessment.property_room_plan}]").click
+        find("option[value=#{assessment.property_room_plan}]").select_option
       end
       fill_in '竣工年', with: assessment.property_constructed_year
 
