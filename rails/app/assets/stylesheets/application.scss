@@ -22,12 +22,6 @@
 .branch-wrapper {
   padding-bottom: 10em;
 
-  @media screen and (min-width: 520px) {
-    width: 75%;
-    margin: 0 auto;  
-  }
-
-    
   .graphics {
     .canvas-wrapper {
       height: 80%;
@@ -55,11 +49,18 @@
     background: #3182CE;
     transition: 0.2s;
   }
-  
-  a.review-card {
-    text-decoration: none;
-    color: inherit;
+}
+
+.centered-content {
+  @media screen and (min-width: 520px) {
+    width: 75%;
+    margin: 0 auto;  
   }
+}
+
+a.link-card {
+  text-decoration: none;
+  color: inherit;
 }
 
 .btn.btn-blue {
