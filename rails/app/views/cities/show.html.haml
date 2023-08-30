@@ -13,7 +13,7 @@
         .card-body
           .row 
             .col-3
-              = branch.company.name
+              = branch.company_branch_name
               %div ★ #{number_with_precision(branch.avg_satisfactions, precision: 1)}
             %p.col-9
               営業時間：#{branch.business_hours}
