@@ -25,55 +25,55 @@
   .row.mt-3
     .col-4.text-center
       お名前
-    .col-4= f.text_field :last_name, class: 'form-control', placeholder: "田中"
-    .col-4= f.text_field :first_name, class: 'form-control', placeholder: "太郎"
+    .col-4= f.text_field :last_name, class: 'form-control', placeholder: "田中", required: true
+    .col-4= f.text_field :first_name, class: 'form-control', placeholder: "太郎", required: true
   
   .row.mt-3
     .col-4.text-center
       フリガナ
-    .col-4= f.text_field :last_name_kana, class: 'form-control', placeholder: "タナカ"
-    .col-4= f.text_field :first_name_kana, class: 'form-control', placeholder: "タロウ"
+    .col-4= f.text_field :last_name_kana, class: 'form-control', placeholder: "タナカ", required: true
+    .col-4= f.text_field :first_name_kana, class: 'form-control', placeholder: "タロウ", required: true
 
   .row.mt-3
     .col-4.text-center= f.label :email, "メールアドレス"
-    .col-8= f.text_field :email, class: 'form-control'
+    .col-8= f.text_field :email, class: 'form-control', placeholder: 'beteran@sumai.com', required: true
 
   .row.mt-3
     .col-4.text-center= f.label :tel, "電話番号"
-    .col-8= f.text_field :tel, class: 'form-control'
+    .col-8= f.text_field :tel, class: 'form-control', placeholder: 'ハイフンなしで入力してください。', required: true
 
   = f.fields_for :assessment, @assessment do |assessment_f|
     .row.mt-3
       .col-4.text-center= assessment_f.label :city_id, "都道府県・市区町村"
-      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name, {}, class: 'form-select'
+      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name, {}, class: 'form-select', required: true
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_address, "物件住所（市区町村以下）"
-      .col-8.text-center= assessment_f.text_field :property_address, class: 'form-control'
+      .col-8.text-center= assessment_f.text_field :property_address, class: 'form-control', required: true
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_type, "物件種別"
-      .col-8.text-center= assessment_f.select :property_type, Assessment.property_types_i18n.invert, {}, class: 'form-select'
+      .col-8.text-center= assessment_f.select :property_type, Assessment.property_types_i18n.invert, {}, class: 'form-select', required: true
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_exclusive_area, "専有面積"
-      .col-8.text-center= assessment_f.number_field :property_exclusive_area, step: "0.001", class: 'form-control'
+      .col-8.text-center= assessment_f.number_field :property_exclusive_area, step: "0.001", class: 'form-control', required: true
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_land_area, "土地面積"
-      .col-8.text-center= assessment_f.number_field :property_land_area, step: "0.001", class: 'form-control'
+      .col-8.text-center= assessment_f.number_field :property_land_area, step: "0.001", class: 'form-control', required: true
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_building_area, "建物面積"
-      .col-8.text-center= assessment_f.number_field :property_building_area, step: "0.001",class: 'form-control'
+      .col-8.text-center= assessment_f.number_field :property_building_area, step: "0.001",class: 'form-control', required: true
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_room_plan, "間取り"
-      .col-8.text-center= assessment_f.select :property_room_plan, Assessment.property_room_plans_i18n.invert, {}, class: 'form-select'
+      .col-8.text-center= assessment_f.select :property_room_plan, Assessment.property_room_plans_i18n.invert, {}, class: 'form-select', required: true
 
     .row.mt-3
       .col-4.text-center= assessment_f.label :property_constructed_year, "竣工年"
-      .col-8.text-center= assessment_f.number_field :property_constructed_year, class: 'form-control'
+      .col-8.text-center= assessment_f.number_field :property_constructed_year, class: 'form-control', placeholder: '1925-2016の間で入力してください。', required: true
     
     .mt-4.d-flex.justify-content-center
       = f.submit "査定依頼する", class: "btn btn-blue text-center w-auto btn--link"
