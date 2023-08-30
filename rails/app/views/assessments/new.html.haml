@@ -22,76 +22,76 @@
     - @assessment.errors.full_messages.each do |msg|
       .text-danger=msg
   
-  .row.mt-3
+  %label.row.mt-3
     .col-4
       お名前
       %span.text-danger *
     .col-4= f.text_field :last_name, class: 'form-control', placeholder: "田中", required: true
     .col-4= f.text_field :first_name, class: 'form-control', placeholder: "太郎", required: true
   
-  .row.mt-3
+  %label.row.mt-3
     .col-4
       フリガナ
       %span.text-danger *
     .col-4= f.text_field :last_name_kana, class: 'form-control', placeholder: "タナカ", required: true
     .col-4= f.text_field :first_name_kana, class: 'form-control', placeholder: "タロウ", required: true
 
-  .row.mt-3
+  %label.row.mt-3
     .col-4
       メールアドレス
       %span.text-danger *
     .col-8= f.text_field :email, class: 'form-control', placeholder: 'beteran@example.com', required: true
 
-  .row.mt-3
+  %label.row.mt-3
     .col-4
       電話番号
       %span.text-danger *
     .col-8= f.text_field :tel, class: 'form-control', placeholder: 'ハイフンなしで入力してください', required: true
 
   = f.fields_for :assessment, @assessment do |assessment_f|
-    .row.mt-3
+    %label.row.mt-3
       .col-4
         都道府県・市区町村
         %span.text-danger *
       .col-8= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name_with_space, {}, class: 'form-select', required: true
 
-    .row.mt-3
+    %label.row.mt-3
       .col-4
         物件住所（市区町村以下）
         %span.text-danger *
       .col-8= assessment_f.text_field :property_address, class: 'form-control', required: true
 
-    .row.mt-3
+    %label.row.mt-3
       .col-4
         物件種別
         %span.text-danger *
       .col-8= assessment_f.select :property_type, Assessment.property_types_i18n.invert, {}, class: 'form-select', required: true
 
-    .row.mt-3.property-exclusive-area
+    %label.row.mt-3.property-exclusive-area
       .col-4
         専有面積
         %span.text-danger *
       .col-8= assessment_f.number_field :property_exclusive_area, step: "0.001", class: 'form-control'
 
-    .row.mt-3.property-land-area
+    %label.row.mt-3.property-land-area
       .col-4
         土地面積
         %span.text-danger *
       .col-8= assessment_f.number_field :property_land_area, step: "0.001", class: 'form-control'
 
-    .row.mt-3.property-building-area
+    %label.row.mt-3.property-building-area
       .col-4
         建物面積
         %span.text-danger *
       .col-8= assessment_f.number_field :property_building_area, step: "0.001", class: 'form-control'
 
-    .row.mt-3
+    %label.row.mt-3
       .col-4
         間取り
         %span.text-danger *
       .col-8= assessment_f.select :property_room_plan, Assessment.property_room_plans_i18n.invert, {}, class: 'form-select', required: true
 
-    .row.mt-3
+    %label.row.mt-3
       .col-4
         竣工年
         %span.text-danger *
