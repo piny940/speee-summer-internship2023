@@ -12,8 +12,8 @@
       .card.mb-3
         .card-body
           .row 
-            .col-3
-              = branch.company_branch_name
+            .col-3.card-title
+              %h2.h6.mb-0.fw-bold= branch.company_branch_name
               %div ★ #{number_with_precision(branch.avg_satisfactions, precision: 1)}
             %p.col-9
               営業時間：#{branch.business_hours}
