@@ -61,6 +61,15 @@
 a.link-card {
   text-decoration: none;
   color: inherit;
+  $link-color: rgb(75, 145, 250);
+
+  .card:hover {
+    border: 1px solid $link-color;
+
+    .card-title {
+      color: $link-color
+    }
+  }
 }
 
 .btn.btn-blue {
