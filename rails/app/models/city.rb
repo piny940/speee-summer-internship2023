@@ -14,6 +14,10 @@ class City < ApplicationRecord
     prefecture.name + name
   end
 
+  def prefecture_city_name_with_space
+    "#{prefecture.name} #{name}"
+  end
+
   def self.create_cities_from_csv(path)
     data = CSV.read(path)[1..]
     data.each_with_index do |row, idx|

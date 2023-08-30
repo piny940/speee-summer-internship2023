@@ -46,14 +46,14 @@
     .col-4.text-center
       = f.label :tel, "電話番号"
       %span.text-danger *
-    .col-8= f.text_field :tel, class: 'form-control', placeholder: 'ハイフンなしで入力してください。', required: true
+    .col-8= f.text_field :tel, class: 'form-control', placeholder: 'ハイフンなしで入力してください', required: true
 
   = f.fields_for :assessment, @assessment do |assessment_f|
     .row.mt-3
       .col-4.text-center
         = assessment_f.label :city_id, "都道府県・市区町村"
         %span.text-danger *
-      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name, {}, class: 'form-select', required: true
+      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name_with_space, {}, class: 'form-select', required: true
 
     .row.mt-3
       .col-4.text-center
@@ -89,7 +89,7 @@
       .col-4.text-center
         = assessment_f.label :property_constructed_year, "竣工年"
         %span.text-danger *
-      .col-8.text-center= assessment_f.number_field :property_constructed_year, class: 'form-control', placeholder: '1925 から 2016 の間で入力してください。', required: true
+      .col-8.text-center= assessment_f.number_field :property_constructed_year, class: 'form-control', placeholder: '1925 から 2016 の間で入力してください', required: true
     
     .mt-4.d-flex.justify-content-center
       = f.submit "査定依頼する", class: "btn btn-blue text-center w-auto btn--link"
