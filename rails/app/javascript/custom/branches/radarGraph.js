@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const ctx = document.querySelector("#branchRadarGraph");
+  if (!ctx) return
+
   const scoresObj = JSON.parse(ctx.getAttribute('data-scores'))
   let scores = [
     // 並び順は表示ラベル名の並びに対応
