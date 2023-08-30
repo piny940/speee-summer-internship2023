@@ -83,9 +83,9 @@ group :test do
   gem 'database_cleaner-active_record'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'simplecov'
   gem 'webdrivers'
   gem 'webmock'
-  gem 'simplecov'
 end
 
 gem 'haml'
