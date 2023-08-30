@@ -53,7 +53,7 @@
       .col-4.text-center
         = assessment_f.label :city_id, "都道府県・市区町村"
         %span.text-danger *
-      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name, {}, class: 'form-select', required: true
+      .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name_with_space, {}, class: 'form-select', required: true
 
     .row.mt-3
       .col-4.text-center
