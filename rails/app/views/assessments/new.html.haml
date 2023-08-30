@@ -39,56 +39,62 @@
 
   .row.mt-3
     .col-4.text-center
-      = f.label :email, "メールアドレス"
+      メールアドレス
       %span.text-danger *
     .col-8= f.text_field :email, class: 'form-control', placeholder: 'beteran@example.com', required: true
 
   .row.mt-3
     .col-4.text-center
-      = f.label :tel, "電話番号"
+      電話番号
       %span.text-danger *
     .col-8= f.text_field :tel, class: 'form-control', placeholder: 'ハイフンなしで入力してください', required: true
 
   = f.fields_for :assessment, @assessment do |assessment_f|
     .row.mt-3
       .col-4.text-center
-        = assessment_f.label :city_id, "都道府県・市区町村"
+        都道府県・市区町村
         %span.text-danger *
       .col-8.text-center= assessment_f.collection_select :city_id, @branch.assessable_cities, :id, :prefecture_city_name_with_space, {}, class: 'form-select', required: true
 
     .row.mt-3
       .col-4.text-center
-        = assessment_f.label :property_address, "物件住所（市区町村以下）"
+        物件住所（市区町村以下）
         %span.text-danger *
       .col-8.text-center= assessment_f.text_field :property_address, class: 'form-control', required: true
 
     .row.mt-3
       .col-4.text-center
-        = assessment_f.label :property_type, "物件種別"
+        物件種別
         %span.text-danger *
       .col-8.text-center= assessment_f.select :property_type, Assessment.property_types_i18n.invert, {}, class: 'form-select', required: true
 
-    .row.mt-3
-      .col-4.text-center= assessment_f.label :property_exclusive_area, "専有面積"
+    .row.mt-3.property-exclusive-area
+      .col-4.text-center
+        専有面積
+        %span.text-danger *
       .col-8.text-center= assessment_f.number_field :property_exclusive_area, step: "0.001", class: 'form-control'
 
-    .row.mt-3
-      .col-4.text-center= assessment_f.label :property_land_area, "土地面積"
+    .row.mt-3.property-land-area
+      .col-4.text-center
+        土地面積
+        %span.text-danger *
       .col-8.text-center= assessment_f.number_field :property_land_area, step: "0.001", class: 'form-control'
 
-    .row.mt-3
-      .col-4.text-center= assessment_f.label :property_building_area, "建物面積"
+    .row.mt-3.property-building-area
+      .col-4.text-center
+        建物面積
+        %span.text-danger *
       .col-8.text-center= assessment_f.number_field :property_building_area, step: "0.001",class: 'form-control'
 
     .row.mt-3
       .col-4.text-center
-        = assessment_f.label :property_room_plan, "間取り"
+        間取り
         %span.text-danger *
       .col-8.text-center= assessment_f.select :property_room_plan, Assessment.property_room_plans_i18n.invert, {}, class: 'form-select', required: true
 
     .row.mt-3
       .col-4.text-center
-        = assessment_f.label :property_constructed_year, "竣工年"
+        竣工年
         %span.text-danger *
       .col-8.text-center= assessment_f.number_field :property_constructed_year, class: 'form-control', placeholder: '1925 から 2016 の間で入力してください', required: true
     
