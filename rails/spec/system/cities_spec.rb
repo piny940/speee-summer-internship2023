@@ -12,7 +12,6 @@ RSpec.describe 'Cities' do
       create(:sale_review, branch_id: new_branch.id)
       city.assessor_branches << new_branch
     end
-    city.save
     city
   end
 
