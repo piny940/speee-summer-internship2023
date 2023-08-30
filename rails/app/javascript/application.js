@@ -58,44 +58,38 @@ document.addEventListener('DOMContentLoaded', () => {
 // 査定依頼ページにおける必須項目の動的切り替え
 document.addEventListener('DOMContentLoaded', () => {
   const propertyTypeInput = document.querySelector('#assessment_user_assessment_property_type')
-  const exclusiveAreaInput = document.querySelector('#assessment_user_assessment_property_exclusive_area')
-  const landAreaInput = document.querySelector('#assessment_user_assessment_property_exclusive_area')
-  const buyildingAreaInput = document.querySelector('#assessment_user_assessment_property_exclusive_area')
-  
+
   // 必須項目のアスタリスク
   const exclusiveAreaAst = document.querySelector('.property-exclusive-area span.text-danger')
   const landAreaAst = document.querySelector('.property-land-area span.text-danger')
   const buyildingAreaAst = document.querySelector('.property-building-area span.text-danger')
 
   // 査定依頼ページでない場合はreturn
-  if (!propertyTypeInput || !exclusiveAreaInput || !landAreaInput || !buyildingAreaInput
-    || !exclusiveAreaAst || !landAreaAst || !buyildingAreaAst) return
+  if (!propertyTypeInput || !exclusiveAreaAst || !landAreaAst || !buyildingAreaAst) return
 
-  const setRequiredElement = (astEl, inputEl, required) => {
+  const setRequiredElement = (astEl, required) => {
     if (required) {
       astEl.style.display = 'inline'
-      inputEl.required = true
     } else {
       astEl.style.display = 'none'
-      inputEl.required = false
     }
   }
   const setRequiredElements = (propertyType) => {
     switch (propertyType) {
       case 'apartment':
-        setRequiredElement(exclusiveAreaAst, exclusiveAreaInput, true)
-        setRequiredElement(landAreaAst, landAreaInput, false)
-        setRequiredElement(buyildingAreaAst, buyildingAreaInput, false)
+        setRequiredElement(exclusiveAreaAst, true)
+        setRequiredElement(landAreaAst, false)
+        setRequiredElement(buyildingAreaAst, false)
         break
       case 'house':
-        setRequiredElement(exclusiveAreaAst, exclusiveAreaInput, false)
-        setRequiredElement(landAreaAst, landAreaInput, true)
-        setRequiredElement(buyildingAreaAst, buyildingAreaInput, true)
+        setRequiredElement(exclusiveAreaAst, false)
+        setRequiredElement(landAreaAst, true)
+        setRequiredElement(buyildingAreaAst, true)
         break
       case 'land':
-        setRequiredElement(exclusiveAreaAst, exclusiveAreaInput, false)
-        setRequiredElement(landAreaAst, landAreaInput, true)
-        setRequiredElement(buyildingAreaAst, buyildingAreaInput, false)
+        setRequiredElement(exclusiveAreaAst, false)
+        setRequiredElement(landAreaAst, true)
+        setRequiredElement(buyildingAreaAst, false)
         break
     }
   }

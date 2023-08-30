@@ -52,19 +52,19 @@ class Assessment < ApplicationRecord
   }, _prefix: true
 
   def validate_property_exclusive_area
-    return unless property_type == 'apartment' && property_exclusive_area.zero?
+    return unless property_type == 'apartment' && (property_exclusive_area.nil? || property_exclusive_area.zero?)
 
     errors.add(:property_exclusive_area, 'を指定してください')
   end
 
   def validate_property_land_area
-    return unless %w[house land].include?(property_type) && property_land_area.zero?
+    return unless %w[house land].include?(property_type) && (property_land_area.nil? || property_land_area.zero?)
 
     errors.add(:property_land_area, 'を指定してください')
   end
 
   def validate_property_building_area
-    return unless property_type == 'house' && property_building_area.zero?
+    return unless property_type == 'house' && (property_building_area.nil? || property_building_area.zero?)
 
     errors.add(:property_building_area, 'を指定してください')
   end
