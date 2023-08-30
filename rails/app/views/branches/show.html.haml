@@ -7,7 +7,7 @@
 - if @branch.sale_reviews.empty?
   - content_for(:noindex, true)
 
-.branch-wrapper
+.branch-wrapper.centered-content
   %h1.text-center= @branch.company_branch_name
   .row.mt-5.d-flex.justify-content-between
     .col
