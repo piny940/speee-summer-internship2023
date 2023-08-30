@@ -2,6 +2,7 @@
 // import "@hotwired/turbo-rails"
 import "controllers"
 
+// 企業ページにおけるレーダーチャートの描画
 document.addEventListener('DOMContentLoaded', () => {
   const ctx = document.querySelector("#branchRadarGraph");
   if (!ctx) return
@@ -52,4 +53,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
   });
+})
+
+// 査定依頼ページにおける必須項目の動的切り替え
+document.addEventListener('DOMContentLoaded', () => {
+  const propertyTypeInput = document.querySelector('#assessment_user_assessment_property_type')
+
+  // 必須項目のアスタリスク
+  const exclusiveAreaAst = document.querySelector('.property-exclusive-area span.text-danger')
+  const landAreaAst = document.querySelector('.property-land-area span.text-danger')
+  const buyildingAreaAst = document.querySelector('.property-building-area span.text-danger')
+
+  // 査定依頼ページでない場合はreturn
+  if (!propertyTypeInput || !exclusiveAreaAst || !landAreaAst || !buyildingAreaAst) return
+
+  const setRequiredElement = (astEl, required) => {
+    if (required) {
+      astEl.style.display = 'inline'
+    } else {
+      astEl.style.display = 'none'
+    }
+  }
+  const setRequiredElements = (propertyType) => {
+    switch (propertyType) {
+      case 'apartment':
+        setRequiredElement(exclusiveAreaAst, true)
+        setRequiredElement(landAreaAst, false)
+        setRequiredElement(buyildingAreaAst, false)
+        break
+      case 'house':
+        setRequiredElement(exclusiveAreaAst, false)
+        setRequiredElement(landAreaAst, true)
+        setRequiredElement(buyildingAreaAst, true)
+        break
+      case 'land':
+        setRequiredElement(exclusiveAreaAst, false)
+        setRequiredElement(landAreaAst, true)
+        setRequiredElement(buyildingAreaAst, false)
+        break
+    }
+  }
+
+  // 初回ロード時
+  setRequiredElements(propertyTypeInput.value)
+
+  // 物件種別変化時
+  propertyTypeInput.addEventListener('change', (e) => {
+    setRequiredElements(e.target.value)
+  })
 })
