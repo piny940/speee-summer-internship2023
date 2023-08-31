@@ -37,3 +37,10 @@ jobs:
     - run: bundle exec rails db:create db:migrate
     - name: rspec
       run: bundle exec rspec
+    - name: comment to pr
+      if: github.event_name == 'pull_request'
+      run: |
+        PR_ID=$(echo $GITHUB_REF | sed -e 's/[^0-9]//g')
+        gh pr comment $PR_ID --body コードカバレッジ:$(cat coverage/.last_run.json | jq .result.line)％
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
