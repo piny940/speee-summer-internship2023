@@ -91,6 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setRequiredElement(landArea, true)
         setRequiredElement(buyildingArea, false)
         break
+      default:
+        setRequiredElement(exclusiveArea, true)
+        setRequiredElement(landArea, true)
+        setRequiredElement(buyildingArea, true)
+        break
     }
   }
 
