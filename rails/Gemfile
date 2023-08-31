@@ -96,3 +96,6 @@ gem 'sassc-rails'
 
 # enumsの値を日本語化
 gem 'enum_help'
+
+# 定期実行
+gem 'sidekiq-scheduler'
