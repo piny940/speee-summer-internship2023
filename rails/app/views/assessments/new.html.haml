@@ -70,19 +70,28 @@
 
     %label.row.mt-3.property-exclusive-area
       .col-4
-        専有面積
+        専有面積(m
+        %sup<>
+          2
+        )
         %span.text-danger *
       .col-8= assessment_f.number_field :property_exclusive_area, step: "0.001", class: 'form-control'
 
     %label.row.mt-3.property-land-area
       .col-4
-        土地面積
+        土地面積(m
+        %sup<>
+          2
+        )
         %span.text-danger *
       .col-8= assessment_f.number_field :property_land_area, step: "0.001", class: 'form-control'
 
     %label.row.mt-3.property-building-area
       .col-4
-        建物面積
+        建物面積(m
+        %sup<>
+          2
+        )
         %span.text-danger *
       .col-8= assessment_f.number_field :property_building_area, step: "0.001", class: 'form-control'
 

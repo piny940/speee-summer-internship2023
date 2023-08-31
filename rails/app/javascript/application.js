@@ -60,36 +60,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const propertyTypeInput = document.querySelector('#assessment_user_assessment_property_type')
 
   // 必須項目のアスタリスク
-  const exclusiveAreaAst = document.querySelector('.property-exclusive-area span.text-danger')
-  const landAreaAst = document.querySelector('.property-land-area span.text-danger')
-  const buyildingAreaAst = document.querySelector('.property-building-area span.text-danger')
+  const exclusiveArea = document.querySelector('.property-exclusive-area')
+  const landArea = document.querySelector('.property-land-area')
+  const buyildingArea = document.querySelector('.property-building-area')
 
   // 査定依頼ページでない場合はreturn
-  if (!propertyTypeInput || !exclusiveAreaAst || !landAreaAst || !buyildingAreaAst) return
+  if (!propertyTypeInput || !exclusiveArea || !landArea || !buyildingArea) return
 
-  const setRequiredElement = (astEl, required) => {
+  const setRequiredElement = (el, required) => {
     if (required) {
-      astEl.style.display = 'inline'
+      el.style.display = 'flex'
     } else {
-      astEl.style.display = 'none'
+      el.style.display = 'none'
     }
   }
   const setRequiredElements = (propertyType) => {
     switch (propertyType) {
       case 'apartment':
-        setRequiredElement(exclusiveAreaAst, true)
-        setRequiredElement(landAreaAst, false)
-        setRequiredElement(buyildingAreaAst, false)
+        setRequiredElement(exclusiveArea, true)
+        setRequiredElement(landArea, false)
+        setRequiredElement(buyildingArea, false)
         break
       case 'house':
-        setRequiredElement(exclusiveAreaAst, false)
-        setRequiredElement(landAreaAst, true)
-        setRequiredElement(buyildingAreaAst, true)
+        setRequiredElement(exclusiveArea, false)
+        setRequiredElement(landArea, true)
+        setRequiredElement(buyildingArea, true)
         break
       case 'land':
-        setRequiredElement(exclusiveAreaAst, false)
-        setRequiredElement(landAreaAst, true)
-        setRequiredElement(buyildingAreaAst, false)
+        setRequiredElement(exclusiveArea, false)
+        setRequiredElement(landArea, true)
+        setRequiredElement(buyildingArea, false)
+        break
+      default:
+        setRequiredElement(exclusiveArea, true)
+        setRequiredElement(landArea, true)
+        setRequiredElement(buyildingArea, true)
         break
     }
   }
